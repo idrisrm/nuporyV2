@@ -4,32 +4,45 @@ class Home extends CI_Controller
 {
     public function index()
     {
-        $error = "";
-        $data = "";
+        $this->load->library("session");
+        $this->session->set_userdata("nama", "Polije");
 
-        if ($this->input->method() == "post") {
-            //konfigurasi
-            $config['upload_path']='./gambar';
-            $config['allowed_types']='gif|jpg|png';
-            $config['max_size']=5000;
-            $config['max_width']=5000;
-            $config['max_height']=5000;
+        echo 'Nama Anda : ' . $this->session->userdata("nama");
+        echo '<br>Session di Hapus</br>';
+
+        $this->session->unset_userdata("nama", "Polije");
+        echo 'Nama Anda :' . $this->session->set_userdata("nama");
 
 
-            //panggil library
-            $this->load->library('upload', $config);
 
-            //cek apakah gagal upload
-            if(!$this->upload->do_upload('gambar')){
-                $error = $this->upload->display_errors();
-            }else{
-                $data = $this->upload->data();
-            }
-        }
-        $this->load->view("HomeView", array(
-            'error' => $error,
-            'data' => $data
-        ));
+
+
+        // $error = "";
+        // $data = "";
+
+        // if ($this->input->method() == "post") {
+        //     //konfigurasi
+        //     $config['upload_path']='./gambar';
+        //     $config['allowed_types']='gif|jpg|png';
+        //     $config['max_size']=5000;
+        //     $config['max_width']=5000;
+        //     $config['max_height']=5000;
+
+
+        //     //panggil library
+        //     $this->load->library('upload', $config);
+
+        //     //cek apakah gagal upload
+        //     if(!$this->upload->do_upload('gambar')){
+        //         $error = $this->upload->display_errors();
+        //     }else{
+        //         $data = $this->upload->data();
+        //     }
+        // }
+        // $this->load->view("HomeView", array(
+        //     'error' => $error,
+        //     'data' => $data
+        // ));
 
 
         // if ($this->input->method() == "post") {
