@@ -58,9 +58,9 @@ class Home extends CI_Controller
         // tampilkanMiring ("Jurusan Teknologi Inforamsi <br>");
         // tampilkanBergaris ("2020 <br>");
 
-        //cek apakah method = post
+        // //cek apakah method = post
         // if ($this->input->method()== "post") {
-        //     //tampilkan data
+        // //tampilkan data
         //     echo "nama : " . $this->input->post ("nama").'<br>';
         //     echo "email : ". $this->input->post ("email");
 
@@ -72,14 +72,14 @@ class Home extends CI_Controller
 
         // if ($this->input->method() == "post") {
         //     //konfigurasi
-        // $config ['upload_path'] = './gambar/';
+        // $config ['upload_path'] = './gambar';
         // $config ['allowed_types'] = 'gif|jpg|png';
-        // $config ['max_size'] = 100;
-        // $config ['max_widht'] = 1024;
-        // $config ['max_height'] = 768;
+        // $config ['max_size'] = 1000;
+        // $config ['max_width'] = 1024;
+        // $config ['max_height'] = 1680;
 
         // //panggil library
-        // $this->load->libarary('upload', $config);
+        // $this->load->library('upload', $config);
 
         // //cek apakah gagal upload
         // if (!$this->upload->do_upload('gambar')){
@@ -94,21 +94,81 @@ class Home extends CI_Controller
         // ));
         
 
-        //memanggil library session
-        $this->load->library("session");
-        //set session
-        $this->session->set_userdata("nama", "Politeknik");
-        //show session
-        echo 'Nama anda : '. $this->session->userdata("nama");
-        echo '<br>Session di hapus <br>';
-        //hapus session nama
-        $this->session->unset_userdata("nama");
-        echo 'Nama anda: '. $this->session->userdata("nama");
+        // //memanggil library session
+        // $this->load->library("session");
+        // //set session
+        // $this->session->set_userdata("nama", "Politeknik");
+        // //show session
+        // echo 'Nama anda : '. $this->session->userdata("nama");
+        // echo '<br>Session di hapus <br>';
+        // //hapus session nama
+        // $this->session->unset_userdata("nama");
+        // echo 'Nama anda: '. $this->session->userdata("nama");
 
-    }
-    
+
+
+
+        // $this->load->library('table'); //memanggil library tabel
+        // $template = array (
+        //     "table_open" => "<table border=1 cellpadding=3>"
+        // );
+
+
+
+
+        // //set table template
+        // $this->table->set_template($template);
+        // $this->table->set_caption
+        // ("<h1>Menampilkan Table dengan HTML Table Class </h1>"); //caption
+        // $data = array (//data yang akan dimasukkan ke tabel
+        // array ('Nama', 'Email', 'Jenis Kelamin'),
+        // array ('Frengki', 'Frengki@gmail.com', 'laki-laki'),
+        // array('lutfi', 'lutfi@gmail.com', 'laki-laki'),
+        // array('kholiq','kholiq@gmail.com', 'laki-laki')
+        // );
+        // echo $this->table->generate ($data); //tampilkan table
+
+
+
+
+        // $this->load->model("UserModel"); //memanggil UserModel
+        // echo '<pre>';
+        // print_r($this->UserModel->get());
+        // echo'</pre>';
+
+
+
+
+        // $this->load->model("UserModel"); 
+        // $tambah = $this->UserModel->tambah(array(
+        //     //data yang akan ditambahkan
+        // 'nama' => 'Udin',
+        // 'email' => 'Udin@gamil.com',
+        // 'alamat' => 'Gending'
+        // ));
+        // if ($tambah) {
+        //     echo "Tambah data berhasil";
+        // }
+
+
+
+
+        // $this->load->model("UserModel");
+        // $ubah = $this->UserModel->ubah(array(
+        // 'nama' => 'ryan',
+        // 'email' => 'ryan@gmail.com',
+        // 'alamat' => 'Jember'),1);
+        // if ($ubah){
+        //     echo "Ubah Data Berhasil";
+        // }
+
+
+
+        $this->load->model("UserModel");
+        $hapus = $this->UserModel->hapus(11);
+        if($hapus){
+            echo "Hapus Data Berhasil";
+        }
+    }   
 }
-
- 
-
 ?>
