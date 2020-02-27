@@ -1,10 +1,12 @@
 <?php
 class Home extends CI_Controller {//mengextend CI_Controller
 public function index () {
-    $this->load->helper ("belajar"); //memanggil helper belajar
-    tampilkanTebal ("Politeknik Negeri Jember <br>");
-    tampilkanMiring ("Jurusan Teknologi Informasi <br>");
-    tampilkanBergaris ("2020 <br>");
+    //cek apakah method = post
+    if ($this->input->method () == "post") {
+    //tampilkan data
+    echo "nama : " . this->input->post ("nama"). '<br>';
+    echo "email : " . this->input->post ("email");
   }
+  $this->load->view("HomeView");
 }
 ?> 
