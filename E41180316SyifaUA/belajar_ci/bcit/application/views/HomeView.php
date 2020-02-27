@@ -4,5 +4,5 @@
     <input type="text" name="nama" id="nama"><br>
     <label for="email">Email</label><br>
     <input type="email" name="email" id="email"><br>
-    <button type="sybmit">Kirim</button>
+    <button type="submit">Kirim</button>
 </form>
