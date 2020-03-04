@@ -63,7 +63,6 @@ class UserModel extends CI_Model{
         
     public function ubah($data = array(), $id){
         $this->load->database();
-        // $this->db->select("*");
         $this->db->where('id', $id);// where bila id nya sesuai
         return $this->db->update('pegawai', $data); // mengupdate data
     }
