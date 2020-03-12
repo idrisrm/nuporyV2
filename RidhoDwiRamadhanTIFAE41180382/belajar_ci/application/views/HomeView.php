@@ -1,16 +1,30 @@
-<h1> Upload Gambar </h1>
-<?php
-echo $error;
-if($data){
-    ?>
-    <h3>Gambar Berhasil di Upload</h3>
-    <img src="../gambar/<?php echo $data ["file_name"];?>"
-    width="200">
+<h1> CRUD dengan Codeigniter </h1>
+<h3><a href="index.php/home/tambah">+ Tambah Artikel</a></h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>judul</th>
+        <th>penulis</th>
+        <th>isi</th>
+        <th></th>
+    </tr>
     <?php
-}
-?>
-
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="gambar" id="gambar"/>
-    <button type="submit">Upload</button>
-</form>
+        foreach ($artikel as $row){
+    ?>
+    <tr>
+        <td><?php echo $row->judul;?></td>
+        <td><?php echo $row->penulis;?></td>
+        <td><?php echo substr ($row->isi, 0, 70);
+        ?>...</td>
+        <td>
+            <a href="<?php echo "index.php/home/detail/"
+            . $row->id; ?>">detail</a>
+            <a href="<?php echo "index.php/home/ubah/"
+            . $row->id; ?>">ubah</a>
+            <a href="<?php echo "index.php/home/hapus/"
+            . $row->id; ?>">hapus</a>
+        </td>
+    </tr>
+    <?php
+        }
+    ?>
+</table>
