@@ -66,11 +66,5 @@ class UserModel extends CI_Model{
         $this->db->where('id', $id);// where bila id nya sesuai
         return $this->db->update('pegawai', $data); // mengupdate data
     }
-
-    public function hapus($id){
-        $this->load->database();
-        $this->db->where('id', $id);
-        return $this->db->delete('pegawai');
-    }
 }
 ?>
