@@ -53,9 +53,9 @@ foreach ($artikel as $row ) {
         <td>
             <a href="<?php echo "index.php/home/detail/". $row->id;?>"> Detail</a> ||
             <a href="<?php echo "index.php/home/ubah/". $row->id;?>"> Ubah </a> ||
-            <!-- <a href="<?php echo "index.php/home/hapus/". $row->id;?>"> Hapus</a> -->
+            <a href="<?php echo "index.php/home/hapus/". $row->id;?>"> Hapus</a>
             
-            <?php echo anchor ("index.php/home/hapus/".$row->id, 'Hapus');?>
+            <!-- <?php echo anchor ("index.php/home/hapus/".$row->id, 'Hapus');?> -->
     </tr>
     <?php
 }

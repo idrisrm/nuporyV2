@@ -15,13 +15,18 @@ public function tambah($data = array())
     $this->load->database();
     return $this->db->insert("artikel", $data);
 }
-public function hapus ( $id)
+
+public function ubah( $data = array(), $id)
 {
     $this->load->database();
-    $this->db->where('id',$id);
-    return $this->db->delete("artikel", $data);
-
+    // $this->db->where('id', $id);
+    return $this->db->update("artikel", $data,["id"=>$id]);
 }
-
+ public function hapus($id)
+ {
+     $this->load->database();
+     $this->db->where('id', $id);
+     return $this->db->delete("artikel");
+ }
 }
 ?>

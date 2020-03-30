@@ -207,5 +207,33 @@ class Home extends CI_Controller
         }
     $this->load->view("FormView");    
 }
+    public function ubah( $id)
+    {
+        $this->load->model("ArtikelModel");
+        $data["artikel"]= $this->ArtikelModel->detail($id);
+        if ($this->input->method()== "post") {
+            $ubah = $this->ArtikelModel->ubah(array(
+                'judul' => $this->input->post("judul"),
+                'penulis' => $this->input->post("penulis"),
+                'isi' => $this->input->post("isi"),
+                'tanggal' => date ("Y-m-d H:i:s")
+            ),$id);
+        if ($ubah) {
+            $data["artikel"]= $this->ArtikelModel->detail($id);
+            echo "Berhasil edit artikel.";
+        }else {
+            echo "Gagal edit artikel.";
+            }
+        }
+    $this->load->view("UbahView", $data);   
+}
+
+public function hapus($id)
+{
+   $kembali = base_url();
+   $this->load->model("ArtikelModel");
+   $data = $this->ArtikelModel->hapus($id);
+   redirect ($kembali);
+}
 }
 ?>
