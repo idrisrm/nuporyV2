@@ -69,7 +69,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">CRUD:</h6>
                         <a class="collapse-item" href="<?= base_url('User/tambah')?>">Tambah</a>
-                        <a class="collapse-item" href="cards.html">Lihat semua</a>
+                        <a class="collapse-item" href="<?= base_url('User/datauser')?>">Lihat semua</a>
                     </div>
                 </div>
             </li>

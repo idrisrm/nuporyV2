@@ -152,5 +152,19 @@ class User extends CI_Controller
         $this->load->view('user/tambahuser');
         $this->load->view('tamplates/footeruser');
     }
+
+    public function datauser()
+    {
+        $judul['judul'] = 'Halaman User';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/sidebaruser', $judul);
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('user/input');
+        $this->load->view('user/edit');
+        $this->load->view('user/datauser');
+        $this->load->view('user/delete');
+        $this->load->view('tamplates/footeruser');
+    }
+
 }
 ?>
