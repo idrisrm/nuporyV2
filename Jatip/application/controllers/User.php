@@ -126,4 +126,14 @@ class User extends CI_Controller
             }
         }
     }
+
+    public function tambah()
+    {
+        $this->load->model("usermodel");
+        if ($this->input->method() == "post") {
+            $insert = $this->Usermodel->tambah(array(
+                
+            ));
+        }
+    }
 }
