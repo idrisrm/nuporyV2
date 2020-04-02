@@ -130,10 +130,27 @@ class User extends CI_Controller
     public function tambah()
     {
         $this->load->model("usermodel");
+        $judul['judul'] = 'Halaman User';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
         if ($this->input->method() == "post") {
             $insert = $this->Usermodel->tambah(array(
-                
+                'nama' => $this->input->post("nama"),
+                'email' => $this->input->post("email"),
+                'foto' => $this->input->post("foto"),
+                'password' => $this->input->post("password"),
+                'level' => $this->input->post("level")  
             ));
+            if ($insert) {
+                echo "Sukses Tambah Admin";
+            }else{
+                echo "Gagal Tambah Admin";
+            }
         }
+        $this->load->view('tamplates/sidebaruser', $judul);
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('user/tambahuser');
+        $this->load->view('tamplates/footeruser');
     }
 }
+?>
