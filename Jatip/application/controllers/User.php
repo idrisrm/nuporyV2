@@ -50,6 +50,8 @@ class User extends CI_Controller
                 $config['allowed_types'] = 'jpg|png|gif';
                 $config['max_size'] = '2048';
                 $config['upload_path'] = './assets/img/foto/';
+                $config['max_width'] = 200;
+                $config['max_height']  = 200;
 
                 $this->load->library('upload', $config);
 
