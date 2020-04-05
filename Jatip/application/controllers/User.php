@@ -64,13 +64,11 @@ class User extends CI_Controller
                     $this->db->set('foto', $fotobaru);
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">'
-            . $this->upload->display_errors() .
-          '</div>');
+                        . $this->upload->display_errors() .
+                        '</div>');
                     redirect('user/editprofile');
                 }
             } else {
-
-                
             }
 
             $this->db->set('nama', $nama);
@@ -132,28 +130,85 @@ class User extends CI_Controller
     public function tambah()
     {
         $this->load->model("usermodel");
-        $judul['judul'] = 'Halaman User';
+        $judul['judul'] = 'Tambah Admin';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        
-        if ($this->input->method() == "post") {
-            $insert = $this->Usermodel->tambah(array(
-                'nama' => $this->input->post("nama"),
-                'email' => $this->input->post("email"),
-                'foto' => $this->input->post("foto"),
-                'password' => $this->input->post("password"),
-                'level' => $this->input->post("level")  
-            ));
-            if ($insert) {
-                echo "Sukses Tambah Admin";
-            }else{
-                echo "Gagal Tambah Admin";
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('tamplates/sidebaruser', $judul);
+            $this->load->view('tamplates/headeruser', $data);
+            $this->load->view('user/tambahadmin');
+            $this->load->view('tamplates/footeruser');
+        } else {
+            if ($this->input->method() == "post") {
+                $this->usermodel->tambahadmin(array(
+                    'nama' => $this->input->post("nama"),
+                    'email' => $this->input->post("email"),
+                    'foto' => 'default.jpg',
+                    'password' => password_hash('admin', PASSWORD_DEFAULT),
+                    'level' => 2,
+                    'aktivasi' => 0,
+                    'waktubuat' => time()
+                ));
+                $email = $this->input->post("email");
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+                Admin berhasil ditambahkan, Email verifikasi telah dikirim ke '. $email .' !
+                </div>');
+
+
+                $token = base64_encode(random_bytes(32));
+                $isi = [
+                    'email' => $email,
+                    'token' => $token,
+                    'waktubuat' => time()
+                ];
+                $this->db->insert('token', $isi);
+                $this->_kirimemail($token);
+                redirect('user/tambah');
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                Gagal menambahkan data!
+                </div>');
+                redirect('user/tambah');
             }
         }
-        $this->load->view('tamplates/sidebaruser', $judul);
-        $this->load->view('tamplates/headeruser', $data);
-        $this->load->view('user/tambahuser');
-        $this->load->view('tamplates/footeruser');
     }
+
+
+
+    private function _kirimemail($token)
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'idristifa2020@gmail.com',
+            'smtp_pass' => 'ronaldo1604',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+
+        ];
+
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+
+        $this->email->from('idristifa2020@gmail.com', 'Justify');
+        $this->email->to($this->input->post('email'));
+
+        $this->email->subject('Aktivasi akun');
+        $this->email->message('Akun anda telah dibuat, silahkan aktivasi akun anda <a href="' . base_url() . 'auth/verifikasi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a> Anda akan diarahkan kehalaman verifikasi. Untuk login akun gunakan password "admin", harap untuk segera merubah password anda agar tidak disalahgunakan oleh pihak tidak bertanggung jawab.');
+
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
 
     public function datauser()
     {
@@ -164,9 +219,6 @@ class User extends CI_Controller
         $this->load->view('user/input');
         $this->load->view('user/edit');
         $this->load->view('user/datauser');
-        $this->load->view('user/delete');
         $this->load->view('tamplates/footeruser');
     }
-
 }
-?>
