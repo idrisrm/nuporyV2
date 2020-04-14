@@ -93,13 +93,30 @@
     </div>
 
 
-    
+    <script src="<?= base_url('assets') ?>/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <!-- <script src="<?= base_url('assets') ?>/assets/libs/popper.js/dist/umd/popper.min.js"></script> -->
+    <!-- <script src="<?= base_url('assets') ?>/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <!-- apps -->
+    <!-- apps -->
+    <script src="<?= base_url('assets') ?>/dist/js/app-style-switcher.js"></script>
+    <script src="<?= base_url('assets') ?>/dist/js/feather.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <!-- <script src="<?= base_url('assets') ?>/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script> -->
+    <script src="<?= base_url('assets') ?>/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <!-- themejs -->
+    <!--Menu sidebar -->
+    <!-- <script src="<?= base_url('assets') ?>/dist/js/sidebarmenu.js"></script> -->
+    <!--Custom JavaScript -->
+    <script src="<?= base_url('assets') ?>/dist/js/custom.min.js"></script>
     <!--This page plugins -->
     <script src="<?= base_url('assets') ?>/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('assets') ?>/dist/js/pages/datatable/datatable-basic.init.js"></script>
     <script>
         $('.id').on('click', function() {
             var id = $(this).data('id');
+            console.log(id)
             $('.hapus').val(id);
         })
     </script>

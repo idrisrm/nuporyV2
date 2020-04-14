@@ -94,6 +94,7 @@
                                         <input type="text" name="nohp" class="form-control" value="<?= $user['no_telepon'] ?>">
                                         <?= form_error('nohp', '<small class="text-danger">', '</small>') ?>
                                     </div>
+                                    <label for="foto">Ubah Foto</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupFileAddon01">Ubah Foto</span>
