@@ -18,4 +18,5 @@ class AdminModels extends CI_Model
     public function DetailAdmin($id){
         return $this->db->get_where('user', ['id' => $id])->row_array();
     }
+
 }
