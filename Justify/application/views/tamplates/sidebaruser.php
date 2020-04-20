@@ -34,7 +34,7 @@
                         <li class="sidebar-item"><a href="<?= base_url('Kategori/index')?>" class="sidebar-link"><span class="hide-menu">Data Kategori
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"><a href="<?= base_url('Bunga/tambah_bunga')?>" class="sidebar-link"><span class="hide-menu">Tambah Bunga
+                        <li class="sidebar-item"><a href="<?= base_url('Kategori/tambahkategori')?>" class="sidebar-link"><span class="hide-menu">Tambah Bunga
                                 </span></a>
                         </li>
                     </ul>
