@@ -59,7 +59,7 @@ class Kategori extends CI_Controller
 
                 $config['allowed_types'] = 'jpg|png|gif|jpeg';
                 $config['max_size'] = '2048';
-                $config['upload_path'] = './assets/img/foto/';
+                $config['upload_path'] = './assets/img/fotokategori/';
         
                 $this->load->library('upload' , $config);
                 if ($this->upload->do_upload('gambar_kategori')) {
@@ -67,7 +67,7 @@ class Kategori extends CI_Controller
                         'id_kategori' =>$this->input->post('id_kategori'),
                         'nama_kategori' => $this->input->post('nama_kategori'),
                         'deskripsi' => $this->input->post('deskripsi'),
-                        'gambar_kategori' => $this->input->post('gambar_kategori'),
+                        'gambar_kategori' => $gambarkategori,
                         
                         
                     );
