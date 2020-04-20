@@ -26,11 +26,11 @@
                                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" name="gambar_bunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                    <input type="file" name="gambar_kategori" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
                             </div>
-                            <?= form_error('gambar_bunga', '<small class="text-danger">', '</small>') ?>
+                            <?= form_error('gambar_kategori', '<small class="text-danger">', '</small>') ?>
                         </div>
                         <button class="btn btn-primary" type="submit">Tambah</button>
                     </form>
