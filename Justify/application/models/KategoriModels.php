@@ -1,6 +1,6 @@
 <?php
 
-class BungaModels extends CI_Model
+class KategoriModels extends CI_Model
 {
 
     public function DataKategori()

@@ -5,12 +5,12 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Data Bunga</h4>
+                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Data Kategori</h4>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item"><a href="index.html" class="text-muted">Data Bunga</a></li>
-                            <li class="breadcrumb-item text-muted active" aria-current="page">Data Bunga</li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Data Kategori</li>
                         </ol>
                     </nav>
                 </div>
@@ -37,22 +37,20 @@
                             <table id="multi_col_order" class="table table-striped table-bordered display no-wrap" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Nama Bunga</th>
-                                        <th>Harga</th>
-                                        <th>Stok</th>
-                                        <th>cara Perawatan</th>
+                                        <th>Nama Kategori</th>
+                                        <th>Deskripsi</th>
+                                        <th>Gambar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($dataB as $bunga) { ?>
+                                    <?php foreach ($dataB as $kategori) { ?>
                                         <tr>
-                                            <td><?= $bunga['nama_bunga'] ?></td>
-                                            <td><?= $bunga['harga'] ?></td>
-                                            <td><?= $bunga['stok']?></td>
-                                            <td><?= $bunga['cara_perawatan']?></td>
+                                            <td><?= $kategori['nama_kategori'] ?></td>
+                                            <td><?= $kategori['deskripsi'] ?></td>
+                                            <td><?= $kategori['gambar_kategori']?></td>
                                             <td>
-                                                <button type="button" data-toggle="modal" data-id="<?= $bunga['id_bunga'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
+                                                <button type="button" data-toggle="modal" data-id="<?= $kategori['id_kategori'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -66,7 +64,7 @@
                                                             <div class="modal-body">
                                                                 Apakah anda yakin ingin menghapus data ini?
                                                             </div>
-                                                            <form action="<?= base_url('Bunga/HapusBunga')?>" method="POST">
+                                                            <form action="<?= base_url('Kategori/HapusKategori')?>" method="POST">
                                                                 <div class="modal-footer">
                                                                     <input type="hidden" class="hapus" name="id">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

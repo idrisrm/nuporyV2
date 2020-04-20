@@ -19,7 +19,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Data Bunga</span></a>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Bunga</span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
                         <li class="sidebar-item"><a href="<?= base_url('Bunga/index')?>" class="sidebar-link"><span class="hide-menu">Data Bunga
                                 </span></a>
@@ -29,9 +29,9 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Data Bunga</span></a>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Kategori</span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="<?= base_url('Kategori/index')?>" class="sidebar-link"><span class="hide-menu">Data Bunga
+                        <li class="sidebar-item"><a href="<?= base_url('Kategori/index')?>" class="sidebar-link"><span class="hide-menu">Data Kategori
                                 </span></a>
                         </li>
                         <li class="sidebar-item"><a href="<?= base_url('Bunga/tambah_bunga')?>" class="sidebar-link"><span class="hide-menu">Tambah Bunga

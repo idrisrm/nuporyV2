@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Bunga extends CI_Controller
+class kategori extends CI_Controller
 {
 
     public function __construct()
@@ -26,7 +26,7 @@ class Bunga extends CI_Controller
 
     public function HapusKategori(){
         $idB = $this->input->post('id_Kategori');
-        $hapus = $this->BungaModels->HapusKategori($idB);
+        $hapus = $this->KategoriModels->HapusKategori($idB);
         if($hapus = true){
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 			Data Berhasi di Hapus!
