@@ -8,7 +8,7 @@
                     <h4 class="card-title text-center">Form Tambah Kategori</h4>
                     <h6 class="card-subtitle text-center">Masukan data kategori baru</h6>
                     <?= $this->session->flashdata('pesan'); ?>
-                    <form class="mt-4" method="POST" action="<?= base_url('Kategori/tambahkategori') ?>" enctype="multipart/form-data">
+                    <form class="mt-4" method="POST" action="<?= base_url('Kategori/tambah') ?>" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama Kategori</label>
                             <input type="text" name="nama" class="form-control" placeholder="Nama Kategori" value="<?= set_value('nama') ?>">
