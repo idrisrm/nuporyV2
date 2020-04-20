@@ -37,6 +37,7 @@
                             <table id="multi_col_order" class="table table-striped table-bordered display no-wrap" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Nama Bunga</th>
                                         <th>Harga</th>
                                         <th>Stok</th>
@@ -45,12 +46,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($dataB as $bunga) { ?>
+                                    <?php $i = 1; foreach ($dataB as $bunga) { ?>
                                         <tr>
+                                            <td><?= $i?></td>
                                             <td><?= $bunga['nama_bunga'] ?></td>
                                             <td><?= $bunga['harga'] ?></td>
-                                            <td><?= $bunga['stok']?></td>
-                                            <td><?= $bunga['cara_perawatan']?></td>
+                                            <td><?= $bunga['stok'] ?></td>
+                                            <td><?= substr($bunga['cara_perawatan'], 0, 45) ?>...</td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $bunga['id_bunga'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <!-- Modal -->
@@ -66,7 +68,7 @@
                                                             <div class="modal-body">
                                                                 Apakah anda yakin ingin menghapus data ini?
                                                             </div>
-                                                            <form action="<?= base_url('Bunga/HapusBunga')?>" method="POST">
+                                                            <form action="<?= base_url('Bunga/HapusBunga') ?>" method="POST">
                                                                 <div class="modal-footer">
                                                                     <input type="hidden" class="hapus" name="id">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -79,7 +81,7 @@
                                             </td>
                                         </tr>
 
-                                    <?php } ?>
+                                    <?php $i++; } ?>
                                 </tbody>
                             </table>
                         </div>

@@ -24,7 +24,7 @@
                         <li class="sidebar-item"><a href="<?= base_url('Bunga/index')?>" class="sidebar-link"><span class="hide-menu">Data Bunga
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"><a href="<?= base_url('Bunga/tambah_bunga')?>" class="sidebar-link"><span class="hide-menu">Tambah Bunga
+                        <li class="sidebar-item"><a href="<?= base_url('Bunga/tambahbunga')?>" class="sidebar-link"><span class="hide-menu">Tambah Bunga
                                 </span></a>
                         </li>
                     </ul>
