@@ -17,4 +17,5 @@ class BungaModels extends CI_Model
     {
         $this->db->delete('bunga', ['id_bunga' => $idB]);
     }
+
 }
