@@ -8,9 +8,9 @@ class BungaModels extends CI_Model
         return $this->db->get('bunga')->result_array();
     }
 
-    public function TambahBunga($dataB = array())
+    public function TambahBunga($data = array())
     {
-        $this->db->insert('bunga', $dataB);
+        $this->db->insert('bunga', $data);
     }
 
     public function HapusBunga($idB)
