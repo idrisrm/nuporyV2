@@ -12,7 +12,7 @@ class Kategori extends CI_Controller
         $this->load->library('form_validation');
         // cekadmin();
     }
-
+    
     public function index()
     {
         $judul['judul'] = 'Halaman Kategori';
@@ -42,7 +42,7 @@ class Kategori extends CI_Controller
     
     public function tambah()
     {
-
+        
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required|is_unique[kategori.nama_kategori]');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
         $this->form_validation->set_rules('gambar_kategori', 'Gambar Kategori', 'trim|required');
@@ -71,16 +71,15 @@ class Kategori extends CI_Controller
                         
                         
                     );
-                    if ($this->KategoriModels->tambahkategori($dataPost)) {
+                        $this->KategoriModels->tambahkategori($dataPost);
                         $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
                         Data Kasus Berhasil Dikirim , Silahkan Tunggu Konfirmasi Dari Admin
                         </div>');
                         redirect('Kategori');
                     }else{
                         $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">GAGAL</div>');
-                        redirect('Kategori');
+                        redirect('Kategori');        
                     }
-            }
         }
     }
 }

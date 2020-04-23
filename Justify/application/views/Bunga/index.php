@@ -55,7 +55,9 @@
                                             <td><?= substr($bunga['cara_perawatan'], 0, 45) ?>...</td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $bunga['id_bunga'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
-                                                <!-- Modal -->
+                                                <button type="button" data-toggle="modal" data-id="<?= $bunga['id_bunga'] ?>" data-target="#modaledit" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
+                                                
+                                                <!-- Modal Hapus -->
                                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -78,7 +80,33 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+                                                <!-- Modal Edit-->
+                                                <div class="modal fade" id="modaledit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Peringatan!</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Apakah anda yakin ingin menghapus data ini?
+                                                            </div>
+                                                            <form action="<?= base_url('Bunga/HapusBunga') ?>" method="POST">
+                                                                <div class="modal-footer">
+                                                                    <input type="hidden" class="hapus" name="id">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                                    <button type="submit" class="btn btn-primary">Hapus</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
+                                            
                                         </tr>
 
                                     <?php $i++; } ?>

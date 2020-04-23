@@ -49,7 +49,7 @@
                                         <tr>
                                             <td><?= $admin['nama'] ?></td>
                                             <td><?= $admin['email'] ?></td>
-                                            <td>-</td>
+                                            <td><?= $admin['no_telepon']?></td>
                                             <td><?= date('d F Y', $admin['waktu_pembuatan']) ?></td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $admin['id'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>

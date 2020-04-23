@@ -1,5 +1,5 @@
 <footer class="footer text-center text-muted">
-    Justify
+    @copyright Nursery Polije
 </footer>
 <!-- ============================================================== -->
 <!-- End footer -->
