@@ -120,7 +120,7 @@ class Profile extends CI_Controller
 
 
                 //jika ada foto yang mau diubah
-                $ubahfoto = $_FILES['foto']['name'];
+                $ubahfoto = str_replace(' ', '', $_FILES['foto']['name']);
                 if ($ubahfoto) {
                     $config['allowed_types'] = 'jpg|png|gif';
                     $config['max_size'] = '2048';

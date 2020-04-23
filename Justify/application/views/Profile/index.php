@@ -77,9 +77,6 @@
                             <div class="col-lg text-center mb-4">
                                 <img src="<?= base_url('assets/img/foto/') . $user['foto'] ?>" alt="image" class="rounded-circle" width="290">
                                 <p class="mt-3 mb-0">
-                                    <!-- <div class="custom-file">
-                                        <i class="fas fa-camera" for='i'><input type="file" id='i' class="custom-file-input" id="inputGroupFile01"></i>
-                                    </div> -->
                                     <h4 class="card-title"><?= $user['email'] ?></h4>
                             </div>
                             <div class="col-lg">
