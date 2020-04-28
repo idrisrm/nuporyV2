@@ -45,8 +45,9 @@ class Kontak extends REST_Controller
         $email = $this->post('email');
         $password = $this->post('password');
         $cek = $this->db->get_where('user', ['email' => $email])->result_array();
-        $cek = $cek[0];
+        
         if ($cek) {
+            $cek = $cek[0];
             if ($cek['aktivasi'] == 0) {
                 // $this->response('Akun Anda belum di Aktifasi');
                 $result['login'] = array();
@@ -66,11 +67,21 @@ class Kontak extends REST_Controller
 
                     echo json_encode($result);
                 } else {
-                    $this->response('Password Salah');
+                    // $this->response('Password Salah');
+
+                    $result['login'] = array();
+                    array_push($result['login']);
+                    $result['success'] = 0;
+                    $result['message'] = 'Password Salah';
+                    echo json_encode($result);
                 }
             }
         } else {
-            $this->response('Akun Tidak Terdaftar');
+            $result['login'] = array();
+            array_push($result['login']);
+            $result['success'] = 0;
+            $result['message'] = 'Akun Anda Belum Terdaftar';
+            echo json_encode($result);
         }
     }
 

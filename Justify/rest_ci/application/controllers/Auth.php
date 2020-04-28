@@ -6,7 +6,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Kontak extends REST_Controller
+class Auth extends REST_Controller
 {
     function __construct($config = 'rest')
     {
@@ -14,15 +14,48 @@ class Kontak extends REST_Controller
         $this->load->database();
     }
 
-    function index_post(){
+    function index_post()
+    {
         $email = $this->post('email');
         $password = $this->post('password');
+        $cek = $this->db->get_where('user', ['email' => $email])->result_array();
+        
+        if ($cek) {
+            $cek = $cek[0];
+            if ($cek['aktivasi'] == 0) {
+                // $this->response('Akun Anda belum di Aktifasi');
+                $result['login'] = array();
+                array_push($result['login']);
+                $result['success'] = 0;
+                $result['message'] = 'Akun Anda Belum Diaktivasi';
 
-        $cek = $this->db->select('user', ['email' => $email])->result();
-        if($cek){
-            $this->response($cek, 200);
-        }else{
-            $this->response(array('status' => 'fail', 502));
+                echo json_encode($result);
+            } else {
+                if (password_verify($password, $cek['password'])) {
+
+                    $result['login'] = array();
+                    $index = $cek;
+                    array_push($result['login'], $index);
+                    $result['success'] = 1;
+                    $result['message'] = 'success';
+
+                    echo json_encode($result);
+                } else {
+                    // $this->response('Password Salah');
+
+                    $result['login'] = array();
+                    array_push($result['login']);
+                    $result['success'] = 0;
+                    $result['message'] = 'Password Salah';
+                    echo json_encode($result);
+                }
+            }
+        } else {
+            $result['login'] = array();
+            array_push($result['login']);
+            $result['success'] = 0;
+            $result['message'] = 'Akun Anda Belum Terdaftar';
+            echo json_encode($result);
         }
     }
 }
