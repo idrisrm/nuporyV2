@@ -18,4 +18,9 @@ class BungaModels extends CI_Model
         $this->db->delete('bunga', ['id_bunga' => $idB]);
     }
 
+    public function UpdateBunga($data = array())
+    {
+        $this->db->update('bunga', $data);
+    }
+
 }

@@ -76,7 +76,7 @@ class Bunga extends CI_Controller
                     'stok' => $this->input->post('stok'),
                     'foto_bunga' => $fotobunga,
                     'cara_perawatan' => $this->input->post('cara'),
-                    'deskripsi' => $this->input->post('deskripsi'),
+                    'deskripsi_bunga' => $this->input->post('deskripsi'),
 
 
                 );
