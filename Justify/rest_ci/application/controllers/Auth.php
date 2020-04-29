@@ -63,4 +63,66 @@ class Auth extends REST_Controller
     {
         
     }
+
+    function lupa_post()
+    {
+            $email = $this->input->post('email');
+			$cekk = $this->db->get_where('user', ['email' => $email, 'aktivasi' => 1])->row_array();
+			if ($cekk) {
+				$token = base64_encode(random_bytes(32));
+				$data = [
+					'email' => $email,
+					'token' => $token,
+					'waktubuat' => time()
+                ];
+                $this->db->insert('token', $data);
+                //kirim email
+				$this->kirim($token, 'lupapassword');
+
+                    $result['success'] = 0;
+                    $result['message'] = 'silakan cek email anda untuk aktifasi ';
+                    echo json_encode($result);
+			} else {
+                $result['success'] = 1;
+                $result['message'] = 'Email Belum Terdaftar';
+                echo json_encode($result);
+			}
+    }
+
+
+    function kirim($token, $type)
+	{
+		$config = [
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_user' => 'idristifa2020@gmail.com',
+			'smtp_pass' => 'ronaldo1604',
+			'smtp_port' => 465,
+			'mailtype' => 'html',
+			'charset' => 'utf-8',
+			'newline' => "\r\n"
+
+		];
+
+		$this->load->library('email', $config);
+		$this->email->initialize($config);
+
+		$this->email->from('idristifa2020@gmail.com', 'Belajar Codeigniter');
+		$this->email->to($this->input->post('email'));
+		if ($type == 'verify') {
+			$this->email->subject('Aktivasi akun');
+			$this->email->message('Aktivasi akun anda <a href="' . base_url() . 'auth/verifikasi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
+		} else if ($type == 'lupapassword') {
+			$this->email->subject('Reset password');
+			$this->email->message('Reset password anda <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
+		}
+
+		if ($this->email->send()) {
+			return true;
+		} else {
+			echo $this->email->print_debugger();
+			die;
+		}
+	}
+
 }
