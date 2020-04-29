@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Apr 2020 pada 07.45
+-- Waktu pembuatan: 29 Apr 2020 pada 14.36
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -108,6 +108,7 @@ CREATE TABLE `token` (
   `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `token` varchar(50) NOT NULL,
+  `tipe` varchar(20) NOT NULL,
   `waktubuat` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -136,8 +137,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `email`, `jenis_kelamin`, `no_telepon`, `alamat`, `password`, `foto`, `status`, `aktivasi`, `waktu_pembuatan`) VALUES
-(24, 'Idris', 'idristifa@gmail.com', 'L', '5555555', '', '$2y$10$mFuDhuhM4n1SaijHAt1fvOMEn53RYRtKoZwEN2o35IICKUXdMARu.', 'default.jpg', 2, 1, 1587562093),
-(27, 'ridho', 'ridho@gmail.com', 'L', '55555557', '', '$2y$10$qsgSPllzBCvKni8WN2CaiuBy5HyWy5DX6HWIvhOf/vm9RF.n2lS/K', 'default.jpg', 2, 1, 1587655426);
+(24, 'Idris Ganteng', 'idristifa@gmail.com', 'L', '5555555', 'Probolinggo', '$2y$10$Jjwxiq.t2jIz2O2lho1cX.tQXieLSHw1BPOMUDDLOttoDspm9jY4G', 'default.jpg', 2, 1, 1587562093),
+(27, 'ridho Elek', 'ridho@gmail.com', 'L', '55555557', '', '$2y$10$qsgSPllzBCvKni8WN2CaiuBy5HyWy5DX6HWIvhOf/vm9RF.n2lS/K', 'default.jpg', 2, 1, 1587655426);
 
 --
 -- Indexes for dumped tables
@@ -194,13 +195,13 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT untuk tabel `token`
 --
 ALTER TABLE `token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
