@@ -96,6 +96,7 @@ class Profile extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $email])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('nohp', 'No HP', 'required|trim|numeric');
         if ($this->input->method() == 'post') {
             if ($this->form_validation->run() == false) {
@@ -112,9 +113,11 @@ class Profile extends CI_Controller
             } else {
                 $nama = $this->input->post('nama');
                 $nohp = $this->input->post('nohp');
+                $alamat = $this->input->post('alamat');
                 $data = [
                     'nama' => $nama,
-                    'no_telepon' => $nohp
+                    'no_telepon' => $nohp,
+                    'alamat' => $alamat
                 ];
 
 

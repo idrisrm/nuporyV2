@@ -23,7 +23,6 @@ class Auth extends REST_Controller
         if ($cek) {
             $cek = $cek[0];
             if ($cek['aktivasi'] == 0) {
-                // $this->response('Akun Anda belum di Aktifasi');
                 $result['login'] = array();
                 array_push($result['login']);
                 $result['success'] = 0;
@@ -41,7 +40,6 @@ class Auth extends REST_Controller
 
                     echo json_encode($result);
                 } else {
-                    // $this->response('Password Salah');
 
                     $result['login'] = array();
                     array_push($result['login']);

@@ -67,6 +67,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><?= $user['nama'] ?></h5>
                                             <p class="card-text"><?= $user['email'] ?></p>
+                                            <p class="card-text"><?= $user['alamat'] ?></p>
                                             <p class="card-text"><small class="text-muted">Bergabung sejak <?= date('d F Y', $user['waktu_pembuatan']) ?></small></p>
                                         </div>
                                     </div>
@@ -90,6 +91,11 @@
                                         <label for="nohp">No Hp</label>
                                         <input type="text" name="nohp" class="form-control" value="<?= $user['no_telepon'] ?>">
                                         <?= form_error('nohp', '<small class="text-danger">', '</small>') ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="alamat">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control" value="<?= $user['alamat'] ?>">
+                                        <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                     <label for="foto">Ubah Foto</label>
                                     <div class="input-group mb-3">

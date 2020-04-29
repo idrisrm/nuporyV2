@@ -45,6 +45,7 @@ class Admin extends CI_Controller
                 'email' => $this->input->post('email'),
                 'jenis_kelamin' => $this->input->post('jeniskelamin'),
                 'no_telepon' => $this->input->post('nohp'),
+                'alamat' => '',
                 'password' => password_hash('admin', PASSWORD_DEFAULT),
                 'foto' => 'default.jpg',
                 'status' => 2,
