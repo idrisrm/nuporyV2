@@ -58,4 +58,9 @@ class Auth extends REST_Controller
             echo json_encode($result);
         }
     }
+
+    function daftar_post()
+    {
+        
+    }
 }
