@@ -93,4 +93,19 @@ class Bunga extends CI_Controller
             }
         }
     }
+    public function EditBunga()
+    {
+        $id_bunga = $this->input->post('id_bunga');
+        $nama_bunga = $this->input->post('nama_bunga');
+        $kategori = $this->input->post('kategori');
+        $harga = $this->input->post('harga');
+        $stok = $this->input->post('stok');
+        $foto_bunga = $this->input->post('foto_bunga');
+        $cara_perawatan = $this->input->post('cara_perawatan');
+        $deskripsi = $this->input->post('deskripsi');
+        $this->BungaModels->EditBunga($id_bunga, $nama_bunga, $kategori, $harga, $stok, $foto_bunga, $cara_perawatan, $deskripsi);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Bunga Berhasil Diedit
+        </div>');
+        redirect('bunga');
+    }
 }
