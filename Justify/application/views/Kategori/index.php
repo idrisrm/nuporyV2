@@ -47,7 +47,7 @@
                                     <?php foreach ($dataB as $kategori) { ?>
                                         <tr>
                                             <td><?= $kategori['nama_kategori'] ?></td>
-                                            <td><?= $kategori['deskripsi'] ?></td>
+                                            <td><?= substr($kategori['deskripsi'], 0, 45) ?>...</td>
                                             <td><?= $kategori['gambar_kategori']?></td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $kategori['id_kategori'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
