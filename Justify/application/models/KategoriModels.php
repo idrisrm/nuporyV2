@@ -18,4 +18,10 @@ class KategoriModels extends CI_Model
         $this->db->delete('kategori', ['id_kategori' => $idB]);
     }
 
+    public function EditKategori($id_kategori, $nama_kategori, $deskripsi, $gambar_kategori)
+    {
+        $hasil = $this->db->query("UPDATE kategori SET id_kategori='$id_kategori', nama_kategori='$nama_kategori',  deskripsi='$deskripsi', gambar_kategori='$gambar_kategori'  WHERE id_kategori='$id_kategori' ");
+        return $hasil;
+    }
+
 }
