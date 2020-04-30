@@ -114,7 +114,7 @@
                                                             <div class="modal-body">
                                                                 <label for="">Foto Kategori</label>
                                                                     <div>
-                                                                        <img src="<?= base_url('assets/img/fotokategori/') .$kategori['gambar_kategori']; ?>">
+                                                                        <img width="400" hieght="500" src="<?= base_url('assets/img/fotokategori/') .$kategori['gambar_kategori']; ?>">
                                                                     </div>
                                                                 <div class="input-group mb-3">
                                                                     <div class="input-group-prepend">
