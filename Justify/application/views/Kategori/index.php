@@ -39,7 +39,6 @@
                                     <tr>
                                         <th>Nama Kategori</th>
                                         <th>Deskripsi</th>
-                                        <th>Gambar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,7 +47,6 @@
                                         <tr>
                                             <td><?= $kategori['nama_kategori'] ?></td>
                                             <td><?= substr($kategori['deskripsi'], 0, 45) ?>...</td>
-                                            <td><?= $kategori['gambar_kategori']?></td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $kategori['id_kategori'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <button type="button" data-toggle="modal" data-target="#modaledit<?= $kategori['id_kategori'] ?>" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
