@@ -66,6 +66,7 @@ class Admin extends CI_Controller
             $datatoken = [
                 'email' => $this->input->post('email'),
                 'token' => $token,
+                'tipe' => 'tambahadmin',
                 'waktubuat' => time()
             ];
             $this->db->insert('token', $datatoken);
