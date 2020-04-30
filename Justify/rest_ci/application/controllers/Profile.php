@@ -17,20 +17,24 @@ class Profile extends REST_Controller
     function index_post()
     {
         $id = $this->post('id');
-        $cek = $this->db->get_where('user', ['id' => $id])->result_array();
+        if ($id) {
+            $cek = $this->db->get_where('user', ['id' => $id])->result_array();
 
-        if ($cek) {
-            $cek = $cek[0];
-            $result['profile'] = array();
-            array_push($result['profile'], $cek);
-            $result['success'] = 1;
-            $result['message'] = 'Berhasil';
-            echo json_encode($result);
+            if ($cek) {
+                $cek = $cek[0];
+                $result['profile'] = array();
+                array_push($result['profile'], $cek);
+                $result['success'] = 1;
+                $result['message'] = 'Berhasil';
+                echo json_encode($result);
+            } else {
+                $result['success'] = 0;
+                $result['message'] = 'Akun Tidak Ditemukan';
+                echo json_encode($result);
+            }
         } else {
-            $result['login'] = array();
-            array_push($result['profile']);
             $result['success'] = 0;
-            $result['message'] = 'Akun Tidak Ditemukan';
+            $result['message'] = 'key dan Value wajib diisi';
             echo json_encode($result);
         }
     }
