@@ -82,4 +82,16 @@ class Kategori extends CI_Controller
                     }
         }
     }
+
+    public function EditKategori()
+    {
+        $id_kategori = $this->input->post('id_kategori');
+        $nama_kategori = $this->input->post('nama_kategori');
+        $deskripsi = $this->input->post('deskripsi');
+        $gambar_kategori = $this->input->post('gambar_kategori');
+        $this->KategoriModels->EditKategori($id_kategori, $nama_kategori, $deskripsi, $gambar_kategori );
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Kategori Berhasil Diedit
+        </div>');
+        redirect('Kategori');
+    }
 }
