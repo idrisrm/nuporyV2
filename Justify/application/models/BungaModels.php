@@ -18,10 +18,9 @@ class BungaModels extends CI_Model
         $this->db->delete('bunga', ['id_bunga' => $idB]);
     }
 
-    public function EditBunga($id_bunga, $nama_bunga, $kategori, $harga, $stok, $foto_bunga, $cara_perawatan, $deskripsi)
+    public function UpdateBunga($data = array())
     {
-        $hasil = $this->db->query("UPDATE bunga SET id_bunga='$id_bunga', nama_bunga='$nama_bunga',  harga='$harga', stok='$stok', foto_bunga='$foto_bunga', cara_perawatan='$cara_perawatan', deskripsi='$deskripsi'  WHERE id_bunga='$id_bunga' ");
-        return $hasil;
+        $this->db->update('bunga', $data);
     }
 
 }
