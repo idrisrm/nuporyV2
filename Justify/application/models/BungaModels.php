@@ -20,8 +20,12 @@ class BungaModels extends CI_Model
 
     public function EditBunga($id_bunga, $nama_bunga, $kategori, $harga, $stok, $foto_bunga, $cara_perawatan, $deskripsi)
     {
-        $hasil = $this->db->query("UPDATE bunga SET id_bunga='$id_bunga', nama_bunga='$nama_bunga',  harga='$harga', stok='$stok', foto_bunga='$foto_bunga', cara_perawatan='$cara_perawatan', deskripsi='$deskripsi'  WHERE id_bunga='$id_bunga' ");
+        $hasil = $this->db->query("UPDATE bunga SET id_bunga='$id_bunga', id_kategori='$kategori' , nama_bunga='$nama_bunga',  harga='$harga', stok='$stok', foto_bunga='$foto_bunga', cara_perawatan='$cara_perawatan', deskripsi='$deskripsi'  WHERE id_bunga='$id_bunga' ");
         return $hasil;
+    }
+
+    public function kategoribunga(){
+        return $this->db->get('kategori')->result_array();
     }
 
 }

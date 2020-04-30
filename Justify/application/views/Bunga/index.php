@@ -46,9 +46,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $i = 1; foreach ($dataB as $bunga) { ?>
+                                    <?php $i = 1;
+                                    foreach ($dataB as $bunga) { ?>
                                         <tr>
-                                            <td><?= $i?></td>
+                                            <td><?= $i ?></td>
                                             <td><?= $bunga['nama_bunga'] ?></td>
                                             <td><?= $bunga['harga'] ?></td>
                                             <td><?= $bunga['stok'] ?></td>
@@ -56,7 +57,7 @@
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $bunga['id_bunga'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <button type="button" data-toggle="modal" data-target="#modaledit<?= $bunga['id_bunga'] ?>" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
-                                                
+
                                                 <!-- Modal Hapus -->
                                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -84,102 +85,93 @@
 
                                                 <!-- Modal Edit-->
                                                 <?php
-                                                foreach ($dataB as $bunga) :
-                                                    $id_bunga = $bunga['id_bunga'];
-                                                    $nama_bunga = $bunga['nama_bunga'];
-                                                    $kategori = $bunga['id_kategori'];
-                                                    $harga = $bunga['harga'];
-                                                    $stok = $bunga['stok'];
-                                                    $foto_bunga = $bunga['foto_bunga'];
-                                                    $cara_perawatan = $bunga['cara_perawatan'];
-                                                    $deskripsi = $bunga['deskripsi']
-                                                ?>
-                                                <div class="modal fade" id="modaledit<?= $bunga['id_bunga'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Edit Bunga</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="<?= base_url('Bunga/EditBunga'); ?>" method="POST" enctype="multipart/form-data">
-                                                            <div class="modal-body">
-                                                                <input type="hidden" name="id_bunga" id="id_bunga" class="form-control"  value="<?= $id_bunga; ?>">
-                                                                <?= form_error('id_bunga', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label for="nama_bunga">Nama Bunga</label>
-                                                                <input type="text" name="nama_bunga" id="nama_bunga" class="form-control" placeholder="Nama  Bunga" value="<?= $nama_bunga; ?>">
-                                                                <?= form_error('nama_bunga', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label for="kategori">Kategori Bunga</label>
-                                                                <select name="kategori" class="form-control" id="kategori">
-                                                                    <option value="">-- Pilih Kategori --</option>
-                                                                    <?php foreach ($kategori as $a) { ?>
-                                                                        <option value="<?= $a['id_kategori']?>"><?= $a['nama_kategori']?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                                <?= form_error('kategori', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label for="harga">Harga</label>
-                                                                <input type="text" name="harga" class="form-control" placeholder="harga" value="<?= $harga; ?>">
-                                                                <?= form_error('harga', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label for="stok">Stok Bunga</label>
-                                                                <input type="text" name="stok" class="form-control" placeholder="Stok Bunga" value="<?= $stok; ?>">
-                                                                <?= form_error('stok', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label for="">Foto Bunga</label>
-                                                                    <div>
-                                                                        <img src="<?= base_url('assets/img/fotobunga/') .$bunga['foto_bunga']; ?>">
-                                                                    </div>
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                                                    </div>
-                                                                    <div class="custom-file">
-                                                                        <input type="file" name="foto_bunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                                    </div>
+                                                foreach ($dataB as $bunga) :?>
+                                                    <div class="modal fade" id="modaledit<?= $bunga['id_bunga'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Bunga</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
                                                                 </div>
-                                                                <?= form_error('foto_bunga', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <!-- <div class="modal-body">
+                                                                <form action="<?= base_url('Bunga/EditBunga'); ?>" method="POST" enctype="multipart/form-data">
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="id_bunga" id="id_bunga" class="form-control" value="<?= $bunga['id_bunga']; ?>">
+                                                                        <?= form_error('id_bunga', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="nama_bunga">Nama Bunga</label>
+                                                                        <input type="text" name="nama_bunga" id="nama_bunga" class="form-control" placeholder="Nama  Bunga" value="<?= $bunga['nama_bunga']; ?>">
+                                                                        <?= form_error('nama_bunga', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="kategori">Kategori Bunga</label>
+                                                                        <select name="kategori" class="form-control" id="kategori">
+                                                                            <?php foreach($kategori as $q){?>
+                                                                                <option value="<?= $q['id_kategori']?>" <?= ($bunga['id_kategori'] == $q['id_kategori']? 'selected' : '')?>><?= $q['nama_kategori']?></option>
+                                                                            <?php }?>
+                                                                        </select>
+                                                                        <?= form_error('kategori', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="harga">Harga</label>
+                                                                        <input type="text" name="harga" class="form-control" placeholder="harga" value="<?= $bunga['harga']; ?>">
+                                                                        <?= form_error('harga', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="stok">Stok Bunga</label>
+                                                                        <input type="text" name="stok" class="form-control" placeholder="Stok Bunga" value="<?= $bunga['stok']; ?>">
+                                                                        <?= form_error('stok', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="">Foto Bunga</label>
+                                                                        <div>
+                                                                            <img src="<?= base_url('assets/img/fotobunga/') . $bunga['foto_bunga']; ?>">
+                                                                        </div>
+                                                                        <div class="input-group mb-3">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                                                            </div>
+                                                                            <div class="custom-file">
+                                                                                <input type="file" name="foto_bunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <?= form_error('foto_bunga', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <!-- <div class="modal-body">
                                                                 <label for="video_bunga">video Bunga</label>
                                                                 <div class="custom-file">
                                                                     <input type="file" name="video_bunga" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                                                     <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
                                                                 </div>
                                                             </div> -->
-                                                            <div class="modal-body">
-                                                                <label for="cara_perawatan">Cara Perawatan</label>
-                                                                <textarea class="form-control" id="cara_perawatan" name="cara_perawatan" rows="3" placeholder="Cara Perawatan Pada Bunga"><?= $cara_perawatan; ?></textarea>
-                                                                <?= form_error('cara_perawatan', '<small class="text-danger">', '</small>') ?>
+                                                                    <div class="modal-body">
+                                                                        <label for="cara_perawatan">Cara Perawatan</label>
+                                                                        <textarea class="form-control" id="cara_perawatan" name="cara_perawatan" rows="3" placeholder="Cara Perawatan Pada Bunga"><?= $bunga['cara_perawatan']; ?></textarea>
+                                                                        <?= form_error('cara_perawatan', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="deskripsi">Deskripsi Bunga</label>
+                                                                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Bunga"><?= $bunga['deskripsi']; ?></textarea>
+                                                                        <?= form_error('deskripsi', '<small class="text-danger">', '</small>') ?>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <label for="deskripsi">Deskripsi Bunga</label>
-                                                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Bunga"><?= $deskripsi; ?></textarea>
-                                                                <?= form_error('deskripsi', '<small class="text-danger">', '</small>') ?>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-success">Simpan</button>
-                                                            </div>
-                                                            </form>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <?php endforeach; ?>                                                                 
+                                                <?php endforeach; ?>
                                             </td>
-                                            
+
                                         </tr>
 
-                                    <?php $i++; } ?>
+                                    <?php $i++;
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

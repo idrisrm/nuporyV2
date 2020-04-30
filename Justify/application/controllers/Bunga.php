@@ -16,11 +16,12 @@ class Bunga extends CI_Controller
     public function index()
     {
         $judul['judul'] = 'Halaman Bunga';
-        $dataB['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $dataB['dataB'] = $this->BungaModels->DataBunga();
-        $this->load->view('tamplates/headeruser', $dataB);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['dataB'] = $this->BungaModels->DataBunga();
+        $data['kategori'] = $this->BungaModels->kategoribunga();
+        $this->load->view('tamplates/headeruser', $data);
         $this->load->view('tamplates/sidebaruser', $judul);
-        $this->load->view('Bunga/index', $dataB);
+        $this->load->view('Bunga/index', $data);
         $this->load->view('tamplates/footeruser');
     }
 
@@ -93,6 +94,7 @@ class Bunga extends CI_Controller
             }
         }
     }
+    
     public function EditBunga()
     {
         $id_bunga = $this->input->post('id_bunga');
