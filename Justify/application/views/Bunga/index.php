@@ -127,7 +127,7 @@
                                                                     <div class="modal-body">
                                                                         <label for="">Foto Bunga</label>
                                                                         <div>
-                                                                            <img src="<?= base_url('assets/img/fotobunga/') . $bunga['foto_bunga']; ?>">
+                                                                            <img width="400" hieght="500" src="<?= base_url('assets/img/fotobunga/') . $bunga['foto_bunga']; ?>">
                                                                         </div>
                                                                         <div class="input-group mb-3">
                                                                             <div class="input-group-prepend">
