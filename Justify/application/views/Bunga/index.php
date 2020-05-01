@@ -42,6 +42,7 @@
                                         <th>Harga</th>
                                         <th>Stok</th>
                                         <th>cara Perawatan</th>
+                                        <th>Foto Bunga</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -54,6 +55,9 @@
                                             <td><?= $bunga['harga'] ?></td>
                                             <td><?= $bunga['stok'] ?></td>
                                             <td><?= substr($bunga['cara_perawatan'], 0, 45) ?>...</td>
+                                            <td>
+                                            <img width="200px" height="100px" src="<?= base_url('assets/img/fotobunga/') . $bunga['foto_bunga']; ?>">
+                                            </td>
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $bunga['id_bunga'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <button type="button" data-toggle="modal" data-target="#modaledit<?= $bunga['id_bunga'] ?>" class="badge id btn btn-outline-primary"><i class="fas fa-edit"></i> Edit</button>
@@ -127,7 +131,7 @@
                                                                     <div class="modal-body">
                                                                         <label for="">Foto Bunga</label>
                                                                         <div>
-                                                                            <img width="400" hieght="500" src="<?= base_url('assets/img/fotobunga/') . $bunga['foto_bunga']; ?>">
+                                                                            <img width="400" height="500" src="<?= base_url('assets/img/fotobunga/') . $bunga['foto_bunga']; ?>">
                                                                         </div>
                                                                         <div class="input-group mb-3">
                                                                             <div class="input-group-prepend">
