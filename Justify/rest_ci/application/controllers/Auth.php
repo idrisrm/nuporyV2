@@ -67,36 +67,46 @@ class Auth extends REST_Controller
         $email1 = $this->input->post('email1');
         $alamat = $this->input->post('alamat');
         $jenis_kelamin = $this->input->post('jenis_kelamin');
-        $password = $this->input->post('nama');
+        $password = $this->input->post('password');
         $nomor_telepon = $this->input->post('nomor_telepon');
-
-        $data = [
+        
+        $data = [                
             'nama' => $nama,
             'email' => $email1,
             'alamat' => $alamat,
             'jenis_kelamin' => $jenis_kelamin,
             'no_telepon' => $nomor_telepon,
             'foto' => 'default.jpg',
-            'password' => $password,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
             'status' => 3,
             'aktivasi' => 0,
             'waktu_pembuatan' => time()
         ];
 
-        //buat token
-		$token = base64_encode(random_bytes(32));
-		$datatoken = [
-			'email' => $email1,
-			'token' => $token,
-			'waktubuat' => time()
-        ];
+        if($nama && $email1 && $alamat && $jenis_kelamin && $password && $nomor_telepon){
+            
+            //buat token
+            $token = base64_encode(random_bytes(32));
+            $datatoken = [
+                'email' => $email1,
+                'token' => $token,
+                'waktubuat' => time()
+            ];
 
-        $this->db->insert('user', $data);
-		$this->db->insert('token', $datatoken);
+            $this->db->insert('user', $data);
+            $this->db->insert('token', $datatoken);
         
         
-        //kirim email
-        $this->kirim($token, 'verify');
+            //kirim email
+            $this->kirim($token, 'verify');
+
+            $result['message'] = 'Pendaftaran Sukses';
+            echo json_encode($result);
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value wajib diisi';
+            echo json_encode($result);
+        }
 
     }
 
