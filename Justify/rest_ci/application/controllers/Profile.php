@@ -18,10 +18,11 @@ class Profile extends REST_Controller
     {
         $id = $this->post('id');
         if ($id) {
-            $cek = $this->db->get_where('user', ['id' => $id])->result_array();
+            $cek = $this->db->get_where('user', ['id' => $id])->row_array();
 
             if ($cek) {
-                $cek = $cek[0];
+                $cek['foto'] = 'http://192.168.43.243/nuporyV2/Justify/assets/img/foto/' . $cek['foto'];
+                // $cek['foto'] = base_url('assets/img/foto/') . $cek['foto'];
                 $result['profile'] = array();
                 array_push($result['profile'], $cek);
                 $result['success'] = 1;
