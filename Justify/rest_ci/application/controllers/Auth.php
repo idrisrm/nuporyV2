@@ -63,6 +63,41 @@ class Auth extends REST_Controller
 
     function daftar_post()
     {
+        $nama = $this->input->post('nama');
+        $email1 = $this->input->post('email1');
+        $alamat = $this->input->post('alamat');
+        $jenis_kelamin = $this->input->post('jenis_kelamin');
+        $password = $this->input->post('nama');
+        $nomor_telepon = $this->input->post('nomor_telepon');
+
+        $data = [
+            'nama' => $nama,
+            'email' => $email1,
+            'alamat' => $alamat,
+            'jenis_kelamin' => $jenis_kelamin,
+            'no_telepon' => $nomor_telepon,
+            'foto' => 'default.jpg',
+            'password' => $password,
+            'status' => 3,
+            'aktivasi' => 0,
+            'waktu_pembuatan' => time()
+        ];
+
+        //buat token
+		$token = base64_encode(random_bytes(32));
+		$datatoken = [
+			'email' => $email1,
+			'token' => $token,
+			'waktubuat' => time()
+        ];
+
+        $this->db->insert('user', $data);
+		$this->db->insert('token', $datatoken);
+        
+        
+        //kirim email
+        $this->kirim($token, 'verify');
+
     }
 
     function lupa_post()
