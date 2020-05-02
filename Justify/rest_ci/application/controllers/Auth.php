@@ -100,8 +100,6 @@ class Auth extends REST_Controller
             //kirim email
             $this->kirim($token, 'verify');
 
-            $result['message'] = 'Pendaftaran Sukses';
-            echo json_encode($result);
         } else {
             $result['success'] = 0;
             $result['message'] = 'Key dan Value wajib diisi';
