@@ -85,29 +85,67 @@ class Bunga extends CI_Controller
                 $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
                         Bunga Berhasil Ditambahkan
                         </div>');
-                redirect('bunga/tambahbunga');
+                redirect('Bunga/tambahbunga');
             }else{
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
                         '. $this->upload->display_errors() .'
                         </div>');
-                redirect('bunga/tambahbunga');
+                redirect('Bunga/tambahbunga');
             }
         }
     }
     
     public function EditBunga()
     {
-        $id_bunga = $this->input->post('id_bunga');
-        $nama_bunga = $this->input->post('nama_bunga');
-        $kategori = $this->input->post('kategori');
-        $harga = $this->input->post('harga');
-        $stok = $this->input->post('stok');
-        $foto_bunga = $this->input->post('foto_bunga');
-        $cara_perawatan = $this->input->post('cara_perawatan');
-        $deskripsi = $this->input->post('deskripsi');
-        $this->BungaModels->EditBunga($id_bunga, $nama_bunga, $kategori, $harga, $stok, $foto_bunga, $cara_perawatan, $deskripsi);
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Bunga Berhasil Diedit
-        </div>');
-        redirect('bunga');
+        $this->form_validation->set_rules('nama_bunga', 'Nama Bunga', 'trim|required');
+        $this->form_validation->set_rules('kategori', 'Kategori Bunga', 'trim|required');
+        $this->form_validation->set_rules('harga', 'Harga', 'trim|required|numeric');
+        $this->form_validation->set_rules('stok', 'Stok Bunga', 'trim|required|numeric');
+        $this->form_validation->set_rules('foto_bunga', 'Foto Bunga', 'trim');
+        $this->form_validation->set_rules('cara_perawatan', 'Cara perawatan', 'trim|required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi Bunga', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $judul['judul'] = 'Edit Bunga';
+            $data['dataB'] = $this->BungaModels->DataBunga();
+            $data['kategori'] = $this->db->get('kategori')->result_array();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('tamplates/headeruser', $data);
+            $this->load->view('tamplates/sidebaruser', $judul);
+            $this->load->view('Bunga/index', $data);
+            $this->load->view('tamplates/footeruser');
+        }else {
+            $fotobunga = $_FILES['foto_bunga']['name'];
+
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '2048';
+            $config['upload_path'] = './assets/img/fotobunga/';
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('foto_bunga')) {
+                $id_bunga = $this->input->post('id_bunga');
+                $nama_bunga = $this->input->post('nama_bunga');
+                $kategori = $this->input->post('kategori');
+                $harga = $this->input->post('harga');
+                $stok = $this->input->post('stok');
+                $foto_bunga = $fotobunga;
+                $cara_perawatan = $this->input->post('cara_perawatan');
+                $deskripsi = $this->input->post('deskripsi');
+
+                $this->BungaModels->EditBunga($id_bunga, $nama_bunga, $kategori, $harga, $stok, $foto_bunga, $cara_perawatan, $deskripsi);
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Bunga Berhasil Diedit
+                 </div>');
+                redirect('bunga');
+            }else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                        '. $this->upload->display_errors() .'
+                        </div>');
+                redirect('bunga');
+                
+            }
+
+        }
+
+
     }
 }

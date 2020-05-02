@@ -63,6 +63,50 @@ class Auth extends REST_Controller
 
     function daftar_post()
     {
+        $nama = $this->input->post('nama');
+        $email1 = $this->input->post('email1');
+        $alamat = $this->input->post('alamat');
+        $jenis_kelamin = $this->input->post('jenis_kelamin');
+        $password = $this->input->post('password');
+        $nomor_telepon = $this->input->post('nomor_telepon');
+        
+        $data = [                
+            'nama' => $nama,
+            'email' => $email1,
+            'alamat' => $alamat,
+            'jenis_kelamin' => $jenis_kelamin,
+            'no_telepon' => $nomor_telepon,
+            'foto' => 'default.jpg',
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'status' => 3,
+            'aktivasi' => 0,
+            'waktu_pembuatan' => time()
+        ];
+
+        if($nama && $email1 && $alamat && $jenis_kelamin && $password && $nomor_telepon){
+            
+            //buat token
+            $token = base64_encode(random_bytes(32));
+            $datatoken = [
+                'email' => $email1,
+                'token' => $token,
+                'tipe' => 'verify',
+                'waktubuat' => time()
+            ];
+
+            $this->db->insert('user', $data);
+            $this->db->insert('token', $datatoken);
+        
+        
+            //kirim email
+            $this->kirim($token, 'verify');
+
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value wajib diisi';
+            echo json_encode($result);
+        }
+
     }
 
     function lupa_post()
@@ -136,7 +180,7 @@ class Auth extends REST_Controller
         $this->load->library('email', $config);
         $this->email->initialize($config);
 
-        $this->email->from('idristifa2020@gmail.com', 'Belajar Codeigniter');
+        $this->email->from('idristifa2020@gmail.com', 'Nursery Polije');
         $this->email->to($this->input->post('email'));
         if ($type == 'verify') {
             $this->email->subject('Aktivasi akun');

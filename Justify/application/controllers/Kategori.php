@@ -85,13 +85,44 @@ class Kategori extends CI_Controller
 
     public function EditKategori()
     {
-        $id_kategori = $this->input->post('id_kategori');
-        $nama_kategori = $this->input->post('nama_kategori');
-        $deskripsi = $this->input->post('deskripsi');
-        $gambar_kategori = $this->input->post('gambar_kategori');
-        $this->KategoriModels->EditKategori($id_kategori, $nama_kategori, $deskripsi, $gambar_kategori );
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Kategori Berhasil Diedit
-        </div>');
-        redirect('Kategori');
+        $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'trim|required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi Kategori', 'trim|required');
+        $this->form_validation->set_rules('gambar_kategori', 'Foto Kategori', 'trim');
+
+        if ($this->form_validation->run() == false) {
+            $judul['judul'] = 'Edit Kategori';
+            $data['dataB'] = $this->KategoriModels->DataKategori();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('tamplates/headeruser', $data);
+            $this->load->view('tamplates/sidebaruser', $judul);
+            $this->load->view('Kategori/index', $data);
+            $this->load->view('tamplates/footeruser');
+        }else {
+            $gambarkategori = $_FILES['gambar_kategori']['name'];
+
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '2048';
+            $config['upload_path'] = './assets/img/fotokategori/';
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('gambar_kategori')) {
+                $id_kategori = $this->input->post('id_kategori');
+                $nama_kategori = $this->input->post('nama_kategori');
+                $deskripsi = $this->input->post('deskripsi');
+                $gambar_kategori = $gambarkategori;
+
+                $this->KategoriModels->EditKategori($id_kategori, $nama_kategori, $deskripsi, $gambar_kategori);
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert"> Kategori Berhasil Diedit
+                 </div>');
+                redirect('Kategori');
+            }else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                        '. $this->upload->display_errors() .'
+                        </div>');
+                redirect('Kategori');
+                
+            }
+
+        }
     }
 }
