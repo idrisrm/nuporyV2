@@ -90,6 +90,7 @@ class Auth extends REST_Controller
             $datatoken = [
                 'email' => $email1,
                 'token' => $token,
+                'tipe' => 'verify',
                 'waktubuat' => time()
             ];
 
