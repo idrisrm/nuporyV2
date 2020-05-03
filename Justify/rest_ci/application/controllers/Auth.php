@@ -64,7 +64,7 @@ class Auth extends REST_Controller
     function daftar_post()
     {
         $nama = $this->input->post('nama');
-        $email1 = $this->input->post('email1');
+        $email = $this->input->post('email');
         $alamat = $this->input->post('alamat');
         $jenis_kelamin = $this->input->post('jenis_kelamin');
         $password = $this->input->post('password');
@@ -72,7 +72,7 @@ class Auth extends REST_Controller
         
         $data = [                
             'nama' => $nama,
-            'email' => $email1,
+            'email' => $email,
             'alamat' => $alamat,
             'jenis_kelamin' => $jenis_kelamin,
             'no_telepon' => $nomor_telepon,
@@ -83,17 +83,18 @@ class Auth extends REST_Controller
             'waktu_pembuatan' => time()
         ];
 
-        if($nama && $email1 && $alamat && $jenis_kelamin && $password && $nomor_telepon){
+        if($nama && $email && $alamat && $jenis_kelamin && $password && $nomor_telepon){
             
             //buat token
             $token = base64_encode(random_bytes(32));
             $datatoken = [
-                'email' => $email1,
+                'email' => $email,
                 'token' => $token,
                 'tipe' => 'verify',
                 'waktubuat' => time()
             ];
 
+            //masukan akun kedalam DB
             $this->db->insert('user', $data);
             $this->db->insert('token', $datatoken);
         
@@ -106,7 +107,14 @@ class Auth extends REST_Controller
             echo json_encode($result);
 
 
+            //kirim server respon
+            $result['success'] = 1;
+            $result['message'] = 'Akun Berhasil Didaftarkan';
+            echo json_encode($result);
+
         } else {
+
+            //kirim server respon gagal daftar
             $result['success'] = 0;
             $result['message'] = 'Key dan Value wajib diisi';
             echo json_encode($result);
@@ -152,7 +160,7 @@ class Auth extends REST_Controller
 
                     //respon rest api
                     $result['success'] = 1;
-                    $result['message'] = 'silakan cek email anda untuk aktifasi ';
+                    $result['message'] = 'silakan cek email anda untuk reset password ';
                     echo json_encode($result);
                 }
             } else {
@@ -167,7 +175,6 @@ class Auth extends REST_Controller
         }
     }
 
-
     function kirim($token, $type)
     {
         $config = [
@@ -179,7 +186,6 @@ class Auth extends REST_Controller
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n"
-
         ];
 
         $this->load->library('email', $config);
@@ -189,10 +195,14 @@ class Auth extends REST_Controller
         $this->email->to($this->input->post('email'));
         if ($type == 'verify') {
             $this->email->subject('Aktivasi akun');
-            $this->email->message('Aktivasi akun anda <a href="' . base_url() . 'auth/verifikasi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
+            $this->email->message('Aktivasi akun anda 
+            <a href="' . base_url() . 'auth/verifikasi?email=' 
+            . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
         } else if ($type == 'lupapassword') {
             $this->email->subject('Reset password');
-            $this->email->message('Reset password anda <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
+            $this->email->message('Reset password anda 
+            <a href="' . base_url() . 'auth/resetpassword?email=' 
+            . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
         }
 
         if ($this->email->send()) {
