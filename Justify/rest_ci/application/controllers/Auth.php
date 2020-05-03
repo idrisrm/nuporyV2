@@ -147,7 +147,7 @@ class Auth extends REST_Controller
 
                     //respon rest api
                     $result['success'] = 1;
-                    $result['message'] = 'silakan cek email anda untuk aktifasi ';
+                    $result['message'] = 'silakan cek email anda untuk reset password ';
                     echo json_encode($result);
                 }
             } else {
@@ -162,7 +162,6 @@ class Auth extends REST_Controller
         }
     }
 
-
     function kirim($token, $type)
     {
         $config = [
@@ -174,7 +173,6 @@ class Auth extends REST_Controller
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n"
-
         ];
 
         $this->load->library('email', $config);
@@ -184,10 +182,14 @@ class Auth extends REST_Controller
         $this->email->to($this->input->post('email'));
         if ($type == 'verify') {
             $this->email->subject('Aktivasi akun');
-            $this->email->message('Aktivasi akun anda <a href="' . base_url() . 'auth/verifikasi?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
+            $this->email->message('Aktivasi akun anda 
+            <a href="' . base_url() . 'auth/verifikasi?email=' 
+            . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
         } else if ($type == 'lupapassword') {
             $this->email->subject('Reset password');
-            $this->email->message('Reset password anda <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
+            $this->email->message('Reset password anda 
+            <a href="' . base_url() . 'auth/resetpassword?email=' 
+            . $this->input->post('email') . '&token=' . urlencode($token) . '">disini</a>');
         }
 
         if ($this->email->send()) {
