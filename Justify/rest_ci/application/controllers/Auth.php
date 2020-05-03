@@ -64,7 +64,7 @@ class Auth extends REST_Controller
     function daftar_post()
     {
         $nama = $this->input->post('nama');
-        $email1 = $this->input->post('email1');
+        $email = $this->input->post('email');
         $alamat = $this->input->post('alamat');
         $jenis_kelamin = $this->input->post('jenis_kelamin');
         $password = $this->input->post('password');
@@ -72,7 +72,7 @@ class Auth extends REST_Controller
         
         $data = [                
             'nama' => $nama,
-            'email' => $email1,
+            'email' => $email,
             'alamat' => $alamat,
             'jenis_kelamin' => $jenis_kelamin,
             'no_telepon' => $nomor_telepon,
@@ -83,25 +83,38 @@ class Auth extends REST_Controller
             'waktu_pembuatan' => time()
         ];
 
-        if($nama && $email1 && $alamat && $jenis_kelamin && $password && $nomor_telepon){
+        if($nama && $email && $alamat && $jenis_kelamin && $password && $nomor_telepon){
             
             //buat token
             $token = base64_encode(random_bytes(32));
             $datatoken = [
-                'email' => $email1,
+                'email' => $email,
                 'token' => $token,
                 'tipe' => 'verify',
                 'waktubuat' => time()
             ];
 
+            //masukan akun kedalam DB
             $this->db->insert('user', $data);
             $this->db->insert('token', $datatoken);
         
         
             //kirim email
-            $this->kirim($token, 'verify');
+            $this->kirim($token, 'verify'); 
+
+            $result['success'] = 1;
+            $result['message'] = 'Pendaftaran berhasil.';
+            echo json_encode($result);
+
+
+            //kirim server respon
+            $result['success'] = 1;
+            $result['message'] = 'Akun Berhasil Didaftarkan';
+            echo json_encode($result);
 
         } else {
+
+            //kirim server respon gagal daftar
             $result['success'] = 0;
             $result['message'] = 'Key dan Value wajib diisi';
             echo json_encode($result);
