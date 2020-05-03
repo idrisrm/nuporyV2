@@ -99,7 +99,12 @@ class Auth extends REST_Controller
         
         
             //kirim email
-            $this->kirim($token, 'verify');
+            $this->kirim($token, 'verify'); 
+
+            $result['success'] = 1;
+            $result['message'] = 'Pendaftaran berhasil.';
+            echo json_encode($result);
+
 
         } else {
             $result['success'] = 0;
