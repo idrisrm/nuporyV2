@@ -102,7 +102,7 @@ class Auth extends REST_Controller
             $this->kirim($token, 'verify'); 
 
             $result['success'] = 1;
-            $result['message'] = 'Pendaftaran berhasil.';
+            $result['message'] = 'Pendaftaran berhasil. Silahkan cek email anda untuk melakukan aktivasi.';
             echo json_encode($result);
 
 
