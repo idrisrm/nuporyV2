@@ -22,6 +22,7 @@ class Profile extends REST_Controller
 
             if ($cek) {
                 $cek['foto'] = 'http://192.168.43.243/nuporyV2/Justify/assets/img/foto/' . $cek['foto'];
+                $cek['waktu_pembuatan'] = date('d F Y', $cek['waktu_pembuatan']);
                 // $cek['foto'] = base_url('assets/img/foto/') . $cek['foto'];
                 $result['profile'] = array();
                 array_push($result['profile'], $cek);
