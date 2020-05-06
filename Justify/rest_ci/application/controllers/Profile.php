@@ -39,4 +39,42 @@ class Profile extends REST_Controller
             echo json_encode($result);
         }
     }
+
+    function ubah_post()
+    {
+        
+        $email = $this->input->post('email');
+        $cek = $this->db->get_where('user', ['email' => $email])->row_array();
+        $password = $this->input->post('password');
+        $passwordbaru = $this->input->post('passwordbaru');
+        $konfirmasi = $this->input->post('konfirmasi');
+
+
+        if (password_verify($password, $cek['password'])) {
+
+            if ($password == $passwordbaru) {
+                $result['success'] = 0;
+                $result['message'] = 'Password Sudah Digunakan';
+                echo json_encode($result);
+                
+            }else {
+                $ubahpassword = password_hash($konfirmasi, PASSWORD_DEFAULT);
+
+                $this->db->set('password', $ubahpassword);
+                $this->db->where('email', $cek['email']);
+                $this->db->update('user');
+
+                $result['success'] = 1;
+                $result['message'] = 'Password Berhasil Diubah';
+                echo json_encode($result);
+                
+            }
+            
+        }else {
+            $result['success'] = 0;
+            $result['message'] = 'Password Salah';
+            echo json_encode($result);
+        }
+         
+    }
 }
