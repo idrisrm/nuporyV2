@@ -49,9 +49,15 @@
                 <div class="card-body">
                     <div class="d-flex d-lg-flex d-md-block align-items-center">
                         <div>
-                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><sup class="set-doller">$</sup>18,306</h2>
-                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Earnings of Month
-                            </h6>
+                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
+                                <?php
+                                    $this->db->select('id_status_transaksi');
+                                    $this->db->from('transaksi');
+                                    $this->db->where('id_status_transaksi', 2);
+                                    echo $this->db->count_all_results();
+                                ?>
+                            </h2>
+                            <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Tagihan Baru</h6>
                         </div>
                         <div class="ml-auto mt-md-3 mt-lg-0">
                             <span class="opacity-7 text-muted"><i data-feather="dollar-sign"></i></span>
