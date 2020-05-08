@@ -16,6 +16,7 @@ class Kritik extends CI_Controller
     {
         $judul['judul'] = 'Halaman Kritik';
         $dataK['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $dataK['status'] = $this->db->get_where('status_kritik', ['id_status_kritik' => 1] )->result_array();
         $dataK['dataK'] = $this->KritikModels->DataKritik();
         $this->load->view('tamplates/headeruser', $dataK);
         $this->load->view('tamplates/sidebaruser', $judul);
