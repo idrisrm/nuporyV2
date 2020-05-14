@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2020 pada 21.08
+-- Waktu pembuatan: 14 Bulan Mei 2020 pada 06.51
 -- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.5
+-- Versi PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -216,18 +217,22 @@ CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL,
   `id_pembayaran` int(11) NOT NULL,
   `id_status_transaksi` int(11) NOT NULL,
-  `nama` varchar(20) NOT NULL
+  `nama` varchar(20) NOT NULL,
+  `tanggal_transaksi` varchar(20) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `total` int(30) NOT NULL,
+  `bukti` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`id`, `id_pembayaran`, `id_status_transaksi`, `nama`) VALUES
-(1, 1, 2, 'ridho Elek'),
-(2, 1, 3, 'idris'),
-(3, 1, 2, 'Idiris'),
-(4, 1, 2, 'Sayid');
+INSERT INTO `transaksi` (`id`, `id_pembayaran`, `id_status_transaksi`, `nama`, `tanggal_transaksi`, `alamat`, `total`, `bukti`) VALUES
+(1, 1, 2, 'ridho Elek', '', '', 0, ''),
+(2, 1, 3, 'idris', '', '', 0, ''),
+(3, 1, 2, 'Idiris', '', '', 0, ''),
+(4, 1, 2, 'Sayid', '', '', 0, '');
 
 -- --------------------------------------------------------
 
