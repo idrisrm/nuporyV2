@@ -54,7 +54,6 @@ class Beranda extends REST_Controller
             }
         } else {
             $hasil = $this->db->get('bunga')->result();
-
             $result['bunga'] = $hasil;
             $result['success'] = 1;
             $result['message'] = 'success';
