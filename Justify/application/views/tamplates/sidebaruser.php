@@ -46,6 +46,16 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span class="hide-menu">Transaksi</span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="<?= base_url('Transaksi/Tagihan')?>" class="sidebar-link"><span class="hide-menu">Tagihan
+                                </span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="<?= base_url('Transaksi/Kemas')?>" class="sidebar-link"><span class="hide-menu">Dikemas
+                                </span></a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span class="hide-menu">Tables </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
                         <li class="sidebar-item"><a href="table-basic.html" class="sidebar-link"><span class="hide-menu"> Basic Table
