@@ -22,6 +22,17 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/footeruser');
     }
 
+    public function DetailTagihan($id_transaksi = ''){
+        if($id_transaksi == ''){
+            redirect('Transaksi/Tagihan');
+        }
+        $data['DetailTagihan'] = $this->TransaksiModels->DetailTagihan($id_transaksi);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/Detailtagihan', $data);
+    }
+    
     public function Kemas()
     {
         $data['kemas'] = $this->TransaksiModels->Kemas();
@@ -29,6 +40,26 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/headeruser', $data);
         $this->load->view('tamplates/sidebaruser');
         $this->load->view('Transaksi/Kemas');
+        $this->load->view('tamplates/footeruser');
+    }
+
+    public function Dikirim()
+    {
+        $data['dikirim'] = $this->TransaksiModels->Dikirim();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/Dikirim');
+        $this->load->view('tamplates/footeruser');
+    }
+    
+    public function Selesai()
+    {
+        $data['selesai'] = $this->TransaksiModels->Selesai();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/Selesai');
         $this->load->view('tamplates/footeruser');
     }
 }

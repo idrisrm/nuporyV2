@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Bunga Dikemas</h4>
+                        <h4 class="card-title">Bunga Dikirim</h4>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
@@ -23,7 +23,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($kemas as $data){?>
+                                    <?php foreach($dikirim as $data){?>
                                     <tr>
                                         <td><?= $data["tanggal_transaksi"]?></td>
                                         <td><?= $data["jenis_pembayaran"]?></td>
@@ -34,7 +34,7 @@
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            KIRIM
+                                            SELESAI
                                             </button>
 
                                             <!-- Modal -->
@@ -48,11 +48,11 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Yakin Untuk Mengirim Bunga?
+                                                    Bunga telah dikirim ?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">BATAL</button>
-                                                    <button type="button" class="btn btn-primary">KIRIM BUNGA</button>
+                                                    <button type="button" class="btn btn-primary">SELESAI</button>
                                                 </div>
                                                 </div>
                                             </div>

@@ -21,7 +21,7 @@ class Profile extends REST_Controller
             $cek = $this->db->get_where('user', ['id' => $id])->row_array();
 
             if ($cek) {
-                $cek['foto'] = 'http://192.168.43.243/nuporyV2/Justify/assets/img/foto/' . $cek['foto'];
+                $cek['foto'] = 'http://192.168.43.11/nuporyV2/Justify/assets/img/foto/' . $cek['foto'];
                 $cek['waktu_pembuatan'] = date('d F Y', $cek['waktu_pembuatan']);
                 // $cek['foto'] = base_url('assets/img/foto/') . $cek['foto'];
                 $result['profile'] = array();
@@ -107,5 +107,26 @@ class Profile extends REST_Controller
             echo json_encode($result);
         }
          
+    }
+
+    function ubahProfil_post()
+    {
+        $email = $this->input->post('email');
+        $cek = $this->db->get_where('user', ['email' => $email])->row_array();
+        $nama = $this->input->post('nama');
+        $alamat = $this->input->post('alamat');
+        $notel = $this->input->post('notel');
+        $jk = $this->input->post('jk');
+
+        $this->db->set('nama', $nama);
+        $this->db->set('alamat', $alamat);
+        $this->db->set('no_telepon', $notel);
+        $this->db->set('jenis_kelamin', $jk);
+        $this->db->where('email', $cek['email']);
+        $this->db->update('user');
+
+        $result['success'] = 1;
+        $result['message'] = 'Profil berhasil diperbarui';
+        echo json_encode($result);
     }
 }
