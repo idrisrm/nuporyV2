@@ -61,6 +61,7 @@ class Auth extends REST_Controller
         }
     }
 
+
     function daftar_post()
     {
         $nama = $this->input->post('nama');

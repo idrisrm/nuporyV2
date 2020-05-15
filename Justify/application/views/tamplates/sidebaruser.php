@@ -54,6 +54,12 @@
                         <li class="sidebar-item"><a href="<?= base_url('Transaksi/Kemas')?>" class="sidebar-link"><span class="hide-menu">Dikemas
                                 </span></a>
                         </li>
+                        <li class="sidebar-item"><a href="<?= base_url('Transaksi/Dikirim')?>" class="sidebar-link"><span class="hide-menu">Dikirim
+                                </span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="<?= base_url('Transaksi/Selesai')?>" class="sidebar-link"><span class="hide-menu">Selesai
+                                </span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span class="hide-menu">Tables </span></a>
