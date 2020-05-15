@@ -37,7 +37,7 @@
                             <table id="multi_col_order" class="table table-striped table-bordered display no-wrap" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Nama</th>
+                                        <th>Email</th>
                                         <th>Kritik dan Saran</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
@@ -46,7 +46,7 @@
                                 <tbody>
                                     <?php foreach ($dataK as $kritik) { ?>
                                         <tr>
-                                            <td><?= $kritik['nama'] ?></td>
+                                            <td><?= $kritik['email'] ?></td>
                                             <td><?= $kritik['isi_kritik'] ?></td>
                                             <td>     
                                                     <?php foreach ($status as $s) { ?>
