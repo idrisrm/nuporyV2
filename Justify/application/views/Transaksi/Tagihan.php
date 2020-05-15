@@ -29,7 +29,7 @@
                                         <td><?= $data["jenis_pembayaran"]?></td>
                                         <td><?= $data["status_transaksi"]?></td>
                                         <td><?= $data["nama"]?></td>
-                                        <td><?= $data["alamat"]?></td>
+                                        <td><?= substr($data["alamat"], 0, 20) ?>...</td>
                                         <td><?= $data["total"]?></td>
                                         <td>
                                             <button class="btn btn-primary">Lihat</button>
