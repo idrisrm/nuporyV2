@@ -21,4 +21,16 @@ class Transaksi extends CI_Controller
         $this->load->view('Transaksi/Tagihan');
         $this->load->view('tamplates/footeruser');
     }
+
+    public function DetailTagihan($id_transaksi = ''){
+        if($id_transaksi == ''){
+            redirect('Transaksi/Tagihan');
+        }
+        $data['DetailTagihan'] = $this->TransaksiModels->DetailTagihan($id_transaksi);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/Detailtagihan', $data);
+        $this->load->view('tamplates/footeruser');
+    }
 }
