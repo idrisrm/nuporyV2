@@ -14,6 +14,7 @@ class Kritik extends REST_Controller
         $this->load->database();
     }
 
+    //kritik
     function index_post()
     {
         $email = $this->input->post('email');

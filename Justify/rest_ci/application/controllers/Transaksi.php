@@ -14,7 +14,8 @@ class Transaksi extends REST_Controller
         $this->load->database();
     }
 
-    function keranjang_post()
+    //keranjang
+    function index_post()
     {
         $email = $this->post('email');
         $id_status_transaksi = $this->post('id_status_transaksi');
