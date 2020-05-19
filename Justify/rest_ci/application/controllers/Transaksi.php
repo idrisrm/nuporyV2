@@ -12,7 +12,6 @@ class Transaksi extends REST_Controller
     {
         parent::__construct($config);
         $this->load->database();
-        $this->load->model('RestTransaksiModels');
     }
 
     function Keranjang_post()
@@ -76,5 +75,6 @@ class Transaksi extends REST_Controller
             $result['message'] = 'Key dan Value Harus Diisi';
             echo json_encode($result);
         }
+        $this->load->model('RestTransaksiModels');
     }
 }
