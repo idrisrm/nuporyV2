@@ -29,9 +29,12 @@ class Auth extends CI_Controller
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 
+		//cek apakah user terdaftar
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 		if ($user) {
+			//cek apakah user telah diaktifasi
 			if ($user['aktivasi'] == 1) {
+				//cek apakah password yang dimasukan benar
 				if (password_verify($password, $user['password'])) {
 					$data = [
 						'email' => $user['email'],
