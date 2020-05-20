@@ -12,6 +12,7 @@ class Transaksi extends REST_Controller
     {
         parent::__construct($config);
         $this->load->database();
+        $this->load->model('RestTransaksiModels');
     }
 
     function Keranjang_post()
@@ -76,5 +77,24 @@ class Transaksi extends REST_Controller
             echo json_encode($result);
         }
         $this->load->model('RestTransaksiModels');
+    }
+
+    function KeranjangUser_get(){
+        $email = $this->get('email');
+        $keranjang = $this->db->get_where('transaksi', ["email" => $email, "id_status_transaksi" => 1])->row_array();
+        if($keranjang){
+            $id_transaksi = $keranjang['id_transaksi'];
+            $this->db->join('bunga', 'bunga.id_bunga = detail_transaksi.id_bunga');
+            $bunga = $this->db->get_where('detail_transaksi', ['id_transaksi' => $id_transaksi])->result();
+
+            $result['keranjang'] = $bunga;
+            $result['success'] = 1;
+            $result['message'] = 'Berhasil';
+            echo json_encode($result);
+        }else{
+            $result['success'] = 0;
+            $result['message'] = 'Kamu Belum Memasukan Barang Ke Dalam Keranjang';
+            echo json_encode($result);
+        }
     }
 }
