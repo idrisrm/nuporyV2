@@ -28,7 +28,7 @@
                                             <td><?= $data["tanggal_transaksi"] ?></td>
                                             <td><?= $data["jenis_pembayaran"] ?></td>
                                             <td><?= $data["status_transaksi"] ?></td>
-                                            <td><?= $data["nama"] ?></td>
+                                            <td><?= $data["email"] ?></td>
                                             <td><?= $data["alamat"] ?></td>
                                             <td><?= $data["total"] ?></td>
                                             <td>

@@ -9,7 +9,10 @@
         }
 
         public function DetailTagihan($id_transaksi){
-            return $this->db->get_where('transaksi', ["id_transaksi" => $id_transaksi])->row_array();
+            $this->db->join('detail_transaksi', 'detail_transaksi.id_transaksi = transaksi.id_transaksi');
+            $this->db->join('bunga', 'bunga.id_bunga = detail_transaksi.id_bunga');
+            $this->db->join('user', 'user.email = transaksi.email');
+            return $this->db->get_where('transaksi', ["transaksi.id_transaksi" => $id_transaksi])->result_array();
         }
 
         public function Kemas()
