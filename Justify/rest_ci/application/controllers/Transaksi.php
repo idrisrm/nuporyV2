@@ -69,7 +69,6 @@ class Transaksi extends REST_Controller
                 $result['success'] = 1;
                 $result['message'] = 'Bunga Berhasil Dimasukan Kedalam Keranjang';
                 echo json_encode($result);
-
             }
         } else {
             $result['success'] = 0;
@@ -79,10 +78,11 @@ class Transaksi extends REST_Controller
         $this->load->model('RestTransaksiModels');
     }
 
-    function KeranjangUser_get(){
+    function KeranjangUser_get()
+    {
         $email = $this->get('email');
         $keranjang = $this->db->get_where('transaksi', ["email" => $email, "id_status_transaksi" => 1])->row_array();
-        if($keranjang){
+        if ($keranjang) {
             $id_transaksi = $keranjang['id_transaksi'];
             $this->db->join('bunga', 'bunga.id_bunga = detail_transaksi.id_bunga');
             $bunga = $this->db->get_where('detail_transaksi', ['id_transaksi' => $id_transaksi])->result();
@@ -91,9 +91,29 @@ class Transaksi extends REST_Controller
             $result['success'] = 1;
             $result['message'] = 'Berhasil';
             echo json_encode($result);
-        }else{
+        } else {
             $result['success'] = 0;
             $result['message'] = 'Kamu Belum Memasukan Barang Ke Dalam Keranjang';
+            echo json_encode($result);
+        }
+    }
+
+    function CheckOut_put()
+    {
+        $id_transaksi = $this->put('id_transaksi');
+        $alamat = $this->put('alamat');
+        if ($id_transaksi && $alamat) {
+
+            $this->RestTransaksiModels->CheckOut($id_transaksi, array(
+                'alamat_pengiriman' => $alamat,
+                'id_status_transaksi' => 2
+            ));
+            $result['success'] = 1;
+            $result['message'] = 'Berhasil';
+            echo json_encode($result);
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value Wajib Diisi';
             echo json_encode($result);
         }
     }
