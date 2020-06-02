@@ -117,4 +117,20 @@ class Transaksi extends REST_Controller
             echo json_encode($result);
         }
     }
+
+    function CheckOut_get(){
+        $email = $this->get('email');
+        if($email){
+            $data = $this->db->get_where('transaksi', ['email' => $email])->result();
+
+            $result['data'] = $data;
+            $result['success'] = 1;
+            $result['message'] = 'success';
+            echo json_encode($result);
+        }else{
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value Wajib Diisi';
+            echo json_encode($result);
+        }
+    }
 }
