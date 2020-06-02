@@ -31,6 +31,7 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/headeruser', $data);
         $this->load->view('tamplates/sidebaruser');
         $this->load->view('Transaksi/Detailtagihan', $data);
+        $this->load->view('tamplates/footeruser');
     }
     
     public function Kemas()
