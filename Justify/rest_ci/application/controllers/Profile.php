@@ -41,14 +41,14 @@ class Profile extends REST_Controller
         }
     }
 
-    function ubah_post()
+    function ubah_put()
     {
         
-        $email = $this->input->post('email');
+        $email = $this->put('email');
         $cek = $this->db->get_where('user', ['email' => $email])->row_array();
-        $password = $this->input->post('password');
-        $passwordbaru = $this->input->post('passwordbaru');
-        $konfirmasi = $this->input->post('konfirmasi');
+        $password = $this->put('password');
+        $passwordbaru = $this->put('passwordbaru');
+        $konfirmasi = $this->put('konfirmasi');
 
 
         if (password_verify($password, $cek['password'])) {
