@@ -47,7 +47,7 @@ class Transaksi extends REST_Controller
                     'id_status_transaksi' => $id_status_transaksi,
                     'email' => $email,
                     'tanggal_transaksi' => time(),
-                    'alamat' => '',
+                    'alamat_pengiriman' => '',
                     'total' => '',
                     'bukti' => ''
                 ));
