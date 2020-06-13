@@ -55,7 +55,7 @@ class Admin extends CI_Controller
 
             $email = $this->input->post('email');
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Admin Baru</strong> Berhasil Ditambahkan, Email verifikasi telah dikirim ke '. $email .' !
+            <strong>Admin Baru</strong> Berhasil Ditambahkan, Email verifikasi telah dikirim ke ' . $email . ' !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -105,20 +105,20 @@ class Admin extends CI_Controller
         }
     }
 
-    public function HapusAdmin(){
+    public function HapusAdmin()
+    {
         $id = $this->input->post('id');
         $hapus = $this->AdminModels->HapusAdmin($id);
-        if($hapus = true){
+        if ($hapus = true) {
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
 			Data Berhasi di Hapus!
             </div>');
             redirect('admin');
-        }else{
+        } else {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
 			Data gagal di Hapus!
             </div>');
             redirect('admin');
         }
     }
-
 }

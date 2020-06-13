@@ -23,4 +23,21 @@ class Kritik extends CI_Controller
         $this->load->view('Kritik/index', $dataK);
         $this->load->view('tamplates/footeruser');
     }
+
+    public function HapusKritik()
+    {
+        $id = $this->input->post('id');
+        $hapus = $this->KritikModels->HapusKritik($id);
+        if ($hapus = true) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+			Data Berhasi di Hapus!
+            </div>');
+            redirect('kritik');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+			Data gagal di Hapus!
+            </div>');
+            redirect('kritik');
+        }
+    }
 }
