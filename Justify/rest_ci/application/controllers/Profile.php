@@ -21,7 +21,7 @@ class Profile extends REST_Controller
             $cek = $this->db->get_where('user', ['id' => $id])->row_array();
 
             if ($cek) {
-                $cek['foto'] = 'http://192.168.43.11/nuporyV2/Justify/assets/img/foto/' . $cek['foto'];
+                // $cek['foto'] = 'http://192.168.43.11/nuporyV2/Justify/assets/img/foto/' . $cek['foto'];
                 $cek['waktu_pembuatan'] = date('d F Y', $cek['waktu_pembuatan']);
                 // $cek['foto'] = base_url('assets/img/foto/') . $cek['foto'];
                 $result['profile'] = array();

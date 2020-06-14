@@ -118,19 +118,125 @@ class Transaksi extends REST_Controller
         }
     }
 
-    function CheckOut_get(){
+    function CheckOut_get()
+    {
         $email = $this->get('email');
-        if($email){
+        if ($email) {
             $data = $this->db->get_where('transaksi', ['email' => $email])->result();
 
             $result['data'] = $data;
             $result['success'] = 1;
             $result['message'] = 'success';
             echo json_encode($result);
-        }else{
+        } else {
             $result['success'] = 0;
             $result['message'] = 'Key dan Value Wajib Diisi';
             echo json_encode($result);
         }
+    }
+
+    function Tagihan_get()
+    {
+        $email = $this->get('email');
+        if ($email) {
+            $tagihan = $this->db->get_where('transaksi', ['email' => $email, 'id_status_transaksi' => 2])->result();
+
+            $result['tagihan'] = $tagihan;
+            $result['success'] = 1;
+            $result['message'] = 'success';
+            echo json_encode($result);
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value Wajib Diisi';
+            echo json_encode($result);
+        }
+    }
+
+    function DetailTagihan_get()
+    {
+        $id_transaksi = $this->get('id_transaksi');
+        if ($id_transaksi) {
+            $this->db->join('detail_transaksi', 'detail_transaksi.id_transaksi = transaksi.id_transaksi');
+            $hasil = $this->db->get_where('transaksi', ["transaksi.id_transaksi" => $id_transaksi])->result();
+
+            $result['tagihan'] = $hasil;
+            $result['success'] = 1;
+            $result['message'] = 'success';
+            echo json_encode($result);
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value Wajib Diisi';
+            echo json_encode($result);
+        }
+    }
+
+    function Tagihan_post()
+    {
+        $id_transaksi = $this->post('id_transaksi');
+        $bukti = $_POST['bukti'];
+        $target_dir = '../assets/img/fotobukti/';
+
+        // echo json_encode($id_transaksi);
+        // echo $bukti;
+        if ($id_transaksi && $bukti) {
+            $namaFile = rand() . "_" . time() . ".jpeg";
+            $target_dir = $target_dir . "/" . $namaFile;
+            if (file_put_contents($target_dir, base64_decode($bukti))) {
+
+                $this->db->set('bukti', $namaFile);
+                $this->db->where('id_transaksi', $id_transaksi);
+                $this->db->update('transaksi');
+
+                $result['success'] = 1;
+                $result['message'] = 'Berhasil';
+                echo json_encode($result);
+            } else {
+                $result['success'] = 0;
+                $result['message'] = 'Gagal Upload Gambar';
+                echo json_encode($result);
+            }
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value Wajib Diisi';
+            echo json_encode($result);
+        }
+
+
+
+
+
+        // $id_transaksi = $this->post('id_transaksi');
+        // $ubahfoto = $_FILES['bukti']['name'];
+        // if ($id_transaksi && $ubahfoto) {
+        //     $config['allowed_types'] = 'jpg|png|gif|jpeg';
+        //     $config['max_size'] = '2048';
+        //     $config['upload_path'] = '../assets/img/fotobukti/';
+
+        //     $this->load->library('upload', $config);
+
+        //     if ($this->upload->do_upload('bukti')) {
+
+        //         // $fotolama = $data['user']['foto'];
+        //         // if ($fotolama != 'default.jpg') {
+        //         //     unlink(FCPATH . 'assets/img/foto/' . $fotolama);
+        //         // }
+        //         $namaFileBukti = $this->upload->data('file_name');
+        //         $this->db->set('bukti', $namaFileBukti);
+        //         $this->db->where('id_transaksi', $id_transaksi);
+        //         $this->db->update('transaksi');
+
+        //         $result['success'] = 1;
+        //         $result['message'] = 'Bukti Berhasil DiUpload';
+        //         echo json_encode($result);
+        //     } else {
+        //         $result['success'] = 0;
+        //         $result['message'] = $this->upload->display_errors();
+        //         echo json_encode($result);
+        //     }
+        // } else {
+        //     $result['success'] = 0;
+        //     $result['message'] = 'Key dan Value Wajib Diisi';
+        //     echo json_encode($result);
+        // }
     }
 }
