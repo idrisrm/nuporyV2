@@ -9,6 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Tagihan User</h4>
+                        <?= $this->session->flashdata('pesan')?>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
@@ -25,14 +26,14 @@
                                 <tbody>
                                     <?php foreach ($tagihan as $data) { ?>
                                         <tr>
-                                            <td><?= $data["tanggal_transaksi"] ?></td>
-                                            <td><?= $data["jenis_pembayaran"] ?></td>
+                                            <td><?= date('d F Y', $data["tanggal_transaksi"]) ?></td>
+                                            <td>Transfer</td>
                                             <td><?= $data["status_transaksi"] ?></td>
                                             <td><?= $data["nama"] ?></td>
                                             <td><?= $data["alamat"] ?></td>
                                             <td><?= $data["total"] ?></td>
                                             <td>
-                                                <a class="btn btn-primary" href="<?= base_url('Transaksi/DetailTagihan/'). $data['id_status_transaksi']?>">Lihat</a>
+                                                <a class="btn btn-primary" href="<?= base_url('Transaksi/DetailTagihan/'). $data['id_transaksi']?>">Lihat</a>
                                             </td>
                                         </tr>
                                     <?php } ?>

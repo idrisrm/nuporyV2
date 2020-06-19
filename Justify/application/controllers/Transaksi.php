@@ -18,12 +18,13 @@ class Transaksi extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('tamplates/headeruser', $data);
         $this->load->view('tamplates/sidebaruser');
-        $this->load->view('Transaksi/Tagihan');
+        $this->load->view('Transaksi/Tagihan', $data);
         $this->load->view('tamplates/footeruser');
     }
 
-    public function DetailTagihan($id_transaksi = ''){
-        if($id_transaksi == ''){
+    public function DetailTagihan($id_transaksi = '')
+    {
+        if ($id_transaksi == '') {
             redirect('Transaksi/Tagihan');
         }
         $data['DetailTagihan'] = $this->TransaksiModels->DetailTagihan($id_transaksi);
@@ -33,7 +34,7 @@ class Transaksi extends CI_Controller
         $this->load->view('Transaksi/Detailtagihan', $data);
         $this->load->view('tamplates/footeruser');
     }
-    
+
     public function Kemas()
     {
         $data['kemas'] = $this->TransaksiModels->Kemas();
@@ -53,7 +54,7 @@ class Transaksi extends CI_Controller
         $this->load->view('Transaksi/Dikirim');
         $this->load->view('tamplates/footeruser');
     }
-    
+
     public function Selesai()
     {
         $data['selesai'] = $this->TransaksiModels->Selesai();
@@ -62,5 +63,21 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/sidebaruser');
         $this->load->view('Transaksi/Selesai');
         $this->load->view('tamplates/footeruser');
+    }
+
+    public function TerimaPesanan()
+    {
+        $id_transaksi = $this->input->post('id_transaksi');
+
+        $this->db->set('id_status_transaksi', 3);
+        $this->db->where('id_transaksi', $id_transaksi);
+        $this->db->update('transaksi');
+
+        $this->session->set_flashdata('pesan', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert">Pesanan dengan ID transaksi ' . $id_transaksi . ' telah terima.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>');
+        redirect('Transaksi/Tagihan');
     }
 }

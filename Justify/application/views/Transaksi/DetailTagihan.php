@@ -29,11 +29,22 @@
                             <div class="alert alert-success" role="alert">
                                 <p>Nama Pembeli <B><?= $DetailTagihan[0]['nama'] ?></B></p>
                                 <p>Alamat Pengiriman <B><?= $DetailTagihan[0]['alamat_pengiriman'] ?></B></p>
-                                <p>Total tagihan <B><?= $DetailTagihan[0]['total']?></B></p>
+                                <p>Total tagihan <B><?= $DetailTagihan[0]['total'] ?></B></p>
 
-                                <a class="btn btn-primary" href="<?= base_url('assets/img/fotobukti/') . $data['bukti'] ?>">Lihat Bukti Pembayaran</a>
+                                <div class="row">
+                                    <div class="col-md-3">
 
-                                <a class="btn btn-success" href="">Terima Pesanan</a>
+                                        <a class="btn btn-primary" href="<?= base_url('assets/img/fotobukti/') . $data['bukti'] ?>">Lihat Bukti Pembayaran</a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <form method="POST" action="<?= base_url('Transaksi/TerimaPesanan') ?>">
+                                            <input type="hidden" name="id_transaksi" id="id_transaksi" value="<?= $DetailTagihan[0]['id_transaksi'] ?>">
+                                            <button type="submit" class="btn btn-success">Terima Pesanan</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
