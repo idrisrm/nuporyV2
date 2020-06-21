@@ -267,4 +267,27 @@ class Transaksi extends REST_Controller
             echo json_encode($result);
         }
     }
+
+    function Dikirim_get()
+    {
+        $email = $this->get('email');
+        if ($email) {
+            $dikemas = $this->db->get_where('transaksi', ['email' => $email, 'id_status_transaksi' => 4])->result();
+
+            if ($dikemas) {
+                $result['dikemas'] = $dikemas;
+                $result['success'] = 1;
+                $result['message'] = 'success';
+                echo json_encode($result);
+            } else {
+                $result['success'] = 0;
+                $result['message'] = 'Anda masih belum memiliki barang yang dikirm';
+                echo json_encode($result);
+            }
+        } else {
+            $result['success'] = 0;
+            $result['message'] = 'Key dan Value Wajib Diisi';
+            echo json_encode($result);
+        }
+    }
 }
