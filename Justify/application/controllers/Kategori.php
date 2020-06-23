@@ -24,8 +24,9 @@ class Kategori extends CI_Controller
         $this->load->view('tamplates/footeruser');
     }
 
-    public function HapusKategori(){
-        $idB = $this->input->post('id_Kategori');
+    public function HapusKategori()
+    {
+        $idB = $this->input->post('id');
         $hapus = $this->KategoriModels->HapusKategori($idB);
         if($hapus = true){
             $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
@@ -45,14 +46,14 @@ class Kategori extends CI_Controller
         
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required|is_unique[kategori.nama_kategori]');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
-        $this->form_validation->set_rules('gambar_kategori', 'Gambar Kategori', 'trim|required');
+        $this->form_validation->set_rules('gambar_kategori', 'Gambar Kategori', 'trim');
 
         if ($this->form_validation->run() == false) {
             $judul['judul'] = 'Tambah Kategori';
             $dataB['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('tamplates/headeruser', $dataB);
             $this->load->view('tamplates/sidebaruser', $judul);
-            $this->load->view('Kategori/tambahkategori', $dataB);
+            $this->load->view('Kategori/tambahkategori');
             $this->load->view('tamplates/footeruser');
         } else {
             $gambarkategori = $_FILES['gambar_kategori']['name'];
@@ -64,8 +65,7 @@ class Kategori extends CI_Controller
                 $this->load->library('upload' , $config);
                 if ($this->upload->do_upload('gambar_kategori')) {
                     $dataPost = array(
-                        'id_kategori' =>$this->input->post('id_kategori'),
-                        'nama_kategori' => $this->input->post('nama_kategori'),
+                        'nama_kategori' => $this->input->post('nama'),
                         'deskripsi' => $this->input->post('deskripsi'),
                         'gambar_kategori' => $gambarkategori,
                         
@@ -73,12 +73,14 @@ class Kategori extends CI_Controller
                     );
                         $this->KategoriModels->tambahkategori($dataPost);
                         $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">
-                        Data Kasus Berhasil Dikirim , Silahkan Tunggu Konfirmasi Dari Admin
+                        Kategori berhasil ditambahkan
                         </div>');
-                        redirect('Kategori');
+                        redirect('Kategori/tambah');
                     }else{
-                        $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">GAGAL</div>');
-                        redirect('Kategori');        
+                        $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">
+                        '. $this->upload->display_errors().'
+                        </div>');
+                        redirect('Kategori/tambah');        
                     }
         }
     }
