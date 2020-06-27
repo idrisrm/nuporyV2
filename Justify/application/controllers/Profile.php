@@ -86,9 +86,6 @@ class Profile extends CI_Controller
         }
     }
 
-
-
-
     public function ubahprofile()
     {
         $judul['judul'] = 'Edit Profile';

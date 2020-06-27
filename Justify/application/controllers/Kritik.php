@@ -20,7 +20,7 @@ class Kritik extends CI_Controller
         $dataK['dataK'] = $this->KritikModels->DataKritik();
         $this->load->view('tamplates/headeruser', $dataK);
         $this->load->view('tamplates/sidebaruser', $judul);
-        $this->load->view('Kritik/index', $dataK);
+        $this->load->view('Kritik/index');
         $this->load->view('tamplates/footeruser');
     }
 

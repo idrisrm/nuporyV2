@@ -39,20 +39,20 @@
                                     <tr>
                                         <th>Email</th>
                                         <th>Kritik dan Saran</th>
-                                        <th>Status</th>
+                                        <!-- <th>Status</th> -->
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($dataK as $kritik) { ?>
                                         <tr>
-                                            <td><?= $kritik['email'] ?></td>
+                                            <td><?= $kritik['nama'] ?></td>
                                             <td><?= $kritik['isi_kritik'] ?></td>
-                                            <td>     
+                                            <!-- <td>     
                                                     <?php foreach ($status as $s) { ?>
                                                      <?= $s['status_kritik'] ?>
                                                     <?php } ?>
-                                            </td>
+                                            </td> -->
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $kritik['id_kritik'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <!-- Modal -->
