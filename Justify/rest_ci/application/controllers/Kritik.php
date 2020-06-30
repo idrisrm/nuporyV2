@@ -17,15 +17,15 @@ class Kritik extends REST_Controller
     //kritik
     function index_post()
     {
-        $email = $this->input->post('email');
+        $nama = $this->input->post('nama');
         $isi_kritik = $this->input->post('isi_kritik');
 
         $data = [
-            'email' => $email,
+            'nama' => $nama,
             'isi_kritik' => $isi_kritik
         ];
 
-        if ($email && $isi_kritik) {
+        if ($nama && $isi_kritik) {
             //input kritik dalam db
             $this->db->insert('kritik', $data);
 
