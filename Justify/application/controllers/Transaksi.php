@@ -45,6 +45,19 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/footeruser');
     }
 
+    public function DetailDikemas($id_transaksi = '')
+    {
+        if ($id_transaksi == '') {
+            redirect('Transaksi/Tagihan');
+        }
+        $data['DetailTagihan'] = $this->TransaksiModels->DetailDikemas($id_transaksi);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/DetailDikemas', $data);
+        $this->load->view('tamplates/footeruser');
+    }
+
     public function Dikirim()
     {
         $data['dikirim'] = $this->TransaksiModels->Dikirim();
@@ -55,6 +68,19 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/footeruser');
     }
 
+    public function DetailDikirim($id_transaksi = '')
+    {
+        if ($id_transaksi == '') {
+            redirect('Transaksi/Tagihan');
+        }
+        $data['DetailTagihan'] = $this->TransaksiModels->DetailDikirim($id_transaksi);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/DetailDikirim', $data);
+        $this->load->view('tamplates/footeruser');
+    }
+
     public function Selesai()
     {
         $data['selesai'] = $this->TransaksiModels->Selesai();
@@ -62,6 +88,19 @@ class Transaksi extends CI_Controller
         $this->load->view('tamplates/headeruser', $data);
         $this->load->view('tamplates/sidebaruser');
         $this->load->view('Transaksi/Selesai');
+        $this->load->view('tamplates/footeruser');
+    }
+
+    public function DetailSelesai($id_transaksi = '')
+    {
+        if ($id_transaksi == '') {
+            redirect('Transaksi/Tagihan');
+        }
+        $data['DetailTagihan'] = $this->TransaksiModels->DetailSelesai($id_transaksi);
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('tamplates/headeruser', $data);
+        $this->load->view('tamplates/sidebaruser');
+        $this->load->view('Transaksi/DetailSelesai', $data);
         $this->load->view('tamplates/footeruser');
     }
 
@@ -79,5 +118,37 @@ class Transaksi extends CI_Controller
                         </button>
                         </div>');
         redirect('Transaksi/Tagihan');
+    }
+
+    public function KirimPesanan()
+    {
+        $id_transaksi = $this->input->post('id_transaksi');
+
+        $this->db->set('id_status_transaksi', 4);
+        $this->db->where('id_transaksi', $id_transaksi);
+        $this->db->update('transaksi');
+
+        $this->session->set_flashdata('pesan', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert">Pesanan dengan ID transaksi ' . $id_transaksi . ' telah dikirim.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>');
+        redirect('Transaksi/kemas');
+    }
+
+    public function PesananTerkirim()
+    {
+        $id_transaksi = $this->input->post('id_transaksi');
+
+        $this->db->set('id_status_transaksi', 5);
+        $this->db->where('id_transaksi', $id_transaksi);
+        $this->db->update('transaksi');
+
+        $this->session->set_flashdata('pesan', '<div class="alert text-center alert-success alert-dismissible fade show" role="alert">Pesanan dengan ID transaksi ' . $id_transaksi . ' telah Diterima Atau Terkirim.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>');
+        redirect('Transaksi/Dikirim');
     }
 }

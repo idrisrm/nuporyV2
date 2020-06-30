@@ -20,17 +20,21 @@
                                         <th>Nama Pembeli</th>
                                         <th>Alamat Pengiriman</th>
                                         <th>Total Tagihan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach($selesai as $data){?>
                                     <tr>
-                                        <td><?= $data["tanggal_transaksi"]?></td>
-                                        <td><?= $data["jenis_pembayaran"]?></td>
+                                        <td><?= date('d F Y', $data["tanggal_transaksi"]) ?></td>
+                                        <td>Transfer</td>
                                         <td><?= $data["status_transaksi"]?></td>
                                         <td><?= $data["nama"]?></td>
                                         <td><?= substr($data["alamat"], 0, 20) ?>...</td>
                                         <td><?= $data["total"]?></td>
+                                        <td>
+                                                <a class="btn btn-primary" href="<?= base_url('Transaksi/DetailSelesai/') . $data['id_transaksi'] ?>">Lihat</a>
+                                            </td>
                                     </tr>
                                     <?php }?>
                                 </tbody>

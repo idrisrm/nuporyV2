@@ -9,6 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Bunga Dikemas</h4>
+                        <?= $this->session->flashdata('pesan')?>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
@@ -23,43 +24,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($kemas as $data){?>
-                                    <tr>
-                                        <td><?= $data["tanggal_transaksi"]?></td>
-                                        <td><?= $data["jenis_pembayaran"]?></td>
-                                        <td><?= $data["status_transaksi"]?></td>
-                                        <td><?= $data["nama"]?></td>
-                                        <td><?= substr($data["alamat"], 0, 20) ?>...</td>
-                                        <td><?= $data["total"]?></td>
-                                        <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                            KIRIM
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Peringatan !</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Yakin Untuk Mengirim Bunga?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">BATAL</button>
-                                                    <button type="button" class="btn btn-primary">KIRIM BUNGA</button>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php }?>
+                                    <?php foreach ($kemas as $data) { ?>
+                                        <tr>
+                                            <td><?= date('d F Y', $data["tanggal_transaksi"]) ?></td>
+                                            <td>Transfer</td>
+                                            <td><?= $data["status_transaksi"] ?></td>
+                                            <td><?= $data["nama"] ?></td>
+                                            <td><?= substr($data["alamat"], 0, 20) ?>...</td>
+                                            <td><?= $data["total"] ?></td>
+                                            <td>
+                                                <a class="btn btn-primary" href="<?= base_url('Transaksi/DetailDikemas/') . $data['id_transaksi'] ?>">Lihat</a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
