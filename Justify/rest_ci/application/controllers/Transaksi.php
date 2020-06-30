@@ -272,10 +272,10 @@ class Transaksi extends REST_Controller
     {
         $email = $this->get('email');
         if ($email) {
-            $dikemas = $this->db->get_where('transaksi', ['email' => $email, 'id_status_transaksi' => 4])->result();
+            $dikirim = $this->db->get_where('transaksi', ['email' => $email, 'id_status_transaksi' => 4])->result();
 
-            if ($dikemas) {
-                $result['dikemas'] = $dikemas;
+            if ($dikirim) {
+                $result['dikirim'] = $dikirim;
                 $result['success'] = 1;
                 $result['message'] = 'success';
                 echo json_encode($result);
