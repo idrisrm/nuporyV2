@@ -48,11 +48,7 @@
                                         <tr>
                                             <td><?= $kritik['nama'] ?></td>
                                             <td><?= $kritik['isi_kritik'] ?></td>
-                                            <!-- <td>     
-                                                    <?php foreach ($status as $s) { ?>
-                                                     <?= $s['status_kritik'] ?>
-                                                    <?php } ?>
-                                            </td> -->
+                                            
                                             <td>
                                                 <button type="button" data-toggle="modal" data-id="<?= $kritik['id_kritik'] ?>" data-target="#exampleModal" class="badge id btn btn-outline-danger"><i class="fas fa-trash"></i> Hapus</button>
                                                 <!-- Modal -->
