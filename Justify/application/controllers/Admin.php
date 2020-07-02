@@ -91,7 +91,7 @@ class Admin extends CI_Controller
         $this->load->library('email', $config);
         $this->email->initialize($config);
 
-        $this->email->from('idristifa2020@gmail.com', 'Justify');
+        $this->email->from('idristifa2020@gmail.com', 'Nursery Polije');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Aktivasi akun');

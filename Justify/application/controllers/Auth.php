@@ -125,7 +125,7 @@ class Auth extends CI_Controller
 		$this->load->library('email', $config);
 		$this->email->initialize($config);
 
-		$this->email->from('idristifa2020@gmail.com', 'Belajar Codeigniter');
+		$this->email->from('idristifa2020@gmail.com', 'Nursery Polije');
 		$this->email->to($this->input->post('email'));
 		if ($type == 'verify') {
 			$this->email->subject('Aktivasi akun');
