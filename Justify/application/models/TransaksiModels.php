@@ -49,7 +49,7 @@
             // $this->db->join('pembayaran', 'pembayaran.id = transaksi.id_pembayaran');
             $this->db->join('status_transaksi', 'status_transaksi.id = transaksi.id_status_transaksi');
             $this->db->join('user', 'user.email = transaksi.email');
-            return $this->db->get_where('transaksi', ["id_status_transaksi" => 5])->result_array();
+            return $this->db->get_where('transaksi', ["transaksi.id_status_transaksi" => 5])->result_array();
         }
 
         public function DetailSelesai($id_transaksi){
